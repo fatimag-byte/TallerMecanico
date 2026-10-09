@@ -1,0 +1,7 @@
+flowchart TB
+  User((Usuario)) --> Register["Registrarse"]
+  User --> Login["Iniciar sesión"]
+  User --> Recover["Solicitar recuperación"]
+  Admin((Administrador)) --> List["Consultar usuarios"]
+  Login --> Refresh["Renovar sesión"]
+  List --> Permission["Requiere users:read"]

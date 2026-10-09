@@ -1,0 +1,9 @@
+flowchart LR
+  Browser["Navegador SPA"] --> Vue["Vue 3 + TypeScript + Vuetify"]
+  Vue --> Router["Vue Router"]
+  Vue --> Axios["Axios /api"]
+  Axios --> API["FastAPI"]
+  API --> Auth["JWT, bcrypt, refresh tokens"]
+  API --> ORM["SQLAlchemy"]
+  ORM -. "configuración prevista" .-> MySQL[("MySQL Server")]
+  API --> Models["User / Role / Permission / RefreshToken"]

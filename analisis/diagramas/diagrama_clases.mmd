@@ -1,0 +1,17 @@
+classDiagram
+  class User {
+    +int id
+    +string name
+    +string paternal_surname?
+    +string maternal_surname?
+    +string phone?
+    +string email
+    +string password_hash
+    +bool is_active
+  }
+  class Role { +int id +string name +string description }
+  class Permission { +int id +string code +string description }
+  class RefreshToken { +int id +string token_hash +datetime expires_at +datetime revoked_at? }
+  User "*" -- "*" Role : user_roles
+  Role "*" -- "*" Permission : role_permissions
+  User "1" -- "*" RefreshToken : refresh_tokens

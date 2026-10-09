@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant U as Usuario
+  participant SPA as Vue SPA
+  participant API as FastAPI
+  participant DB as MySQL (no verificado)
+  U->>SPA: Envía login o registro
+  SPA->>API: POST /api/auth/login o /register
+  API->>DB: Consulta o persiste usuario
+  DB-->>API: Resultado
+  API-->>SPA: Tokens y usuario / error
+  SPA->>SPA: Guarda access token y refresh token
+  SPA->>API: Solicitud protegida con Bearer token
+  API-->>SPA: 401 puede activar POST /api/auth/refresh
