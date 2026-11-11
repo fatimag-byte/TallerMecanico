@@ -25,6 +25,7 @@
 | M01-RA-014 | Composición alternativa de Editar rol | COMPLETADO | `ManageRolesView.vue`; inspección visual local; `npm run build`, 2026-11-11 | Se aplicó la referencia más reciente: cabecera blanca, icono azul sobre azul claro, divisor dorado y franja azul de permisos separada de las tarjetas. La funcionalidad permanece intacta. |
 | M01-RA-015 | Fondo dorado de icono en Editar rol | COMPLETADO | `ManageRolesView.vue`; inspección visual local; `npm run build`, 2026-11-11 | Se cambió exclusivamente el fondo del icono de escudo de la cabecera a dorado suave `#F8E9CE`; el icono continúa azul. |
 | M01-RA-016 | Host permitido en preview de Railway | COMPLETADO | `frontend/vite.config.ts`; inspección de configuración y `npm run build`, 2026-11-11 | `preview.allowedHosts` permite exclusivamente `just-clarity-production-3a213deb.up.railway.app`; se conservan el puerto local y las rutas SPA. |
+| M01-RA-017 | Codificación de iconos en producción | COMPLETADO | `frontend/index.html`, `src/main.ts`, artefacto `dist/assets`; `npm run build`, 2026-11-11 | Se declaró UTF-8 para que los codepoints de Material Design Icons no se decodifiquen como caracteres como `ó°`. Se conservaron todos los iconos y el diseño. |
 
 ## Observaciones
 
