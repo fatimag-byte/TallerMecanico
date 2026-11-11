@@ -23,7 +23,7 @@ Esta guía prepara dos servicios Railway: FastAPI y el sitio estático de Vue. N
    | `REFRESH_TOKEN_DAYS` | por ejemplo `7` |
    | `CORS_ORIGINS` | URL HTTPS exacta del frontend, sin rutas; separa varios orígenes con comas. No incluyas orígenes locales en producción. |
 
-   `MIGRATION_DATABASE_URL` es opcional. Si se define, Alembic la usa en vez de `DATABASE_URL`; úsala sólo para una cuenta con permisos de migración.
+   `MIGRATION_DATABASE_URL` es opcional. Si se define, Alembic la usa en vez de `DATABASE_URL`; ambas aceptan las formas `mysql://` y `mysql+pymysql://`. En Railway no la definas salvo que vayas a usar una cuenta separada para migraciones.
 
 4. Después de que Railway asigne dominio, confirma `GET /api/health`. Responde `{"status":"ok"}` sólo cuando FastAPI y MySQL pueden atender consultas.
 

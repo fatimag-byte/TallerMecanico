@@ -5,7 +5,7 @@ import os
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from app.config import get_settings
+from app.config import get_settings, normalize_database_url
 from app.database import Base
 import app.models  # noqa: F401: registra los modelos en Base.metadata.
 
@@ -20,20 +20,19 @@ target_metadata = Base.metadata
 def migration_database_url() -> str:
     """Use the dedicated, local-only migration account when configured.
 
-    The application continues to obtain ``DATABASE_URL`` from ``.env``.  This
-    keeps DDL credentials out of normal FastAPI execution while allowing
-    Alembic to run with the account intended for schema changes.
+    Railway uses ``DATABASE_URL`` by default. A dedicated migration URL is
+    optional for local installations that intentionally separate DDL access.
     """
     configured = os.getenv("MIGRATION_DATABASE_URL")
     if configured:
-        return configured
+        return normalize_database_url(configured)
 
     migration_env = Path(__file__).resolve().parents[1] / ".env.migration"
     if migration_env.exists():
         for line in migration_env.read_text(encoding="utf-8").splitlines():
             key, separator, value = line.partition("=")
             if separator and key.strip() == "MIGRATION_DATABASE_URL":
-                return value.strip().strip('"').strip("'")
+                return normalize_database_url(value.strip().strip('"').strip("'"))
 
     return get_settings().database_url
 

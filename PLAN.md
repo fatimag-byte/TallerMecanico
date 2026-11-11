@@ -121,3 +121,4 @@ M01 sólo podrá cerrarse cuando la base de datos, registro, login, renovación 
 ## Preparación de despliegue
 
 - **COMPLETADO 2026-11-11:** se preparó el repositorio para Railway sin desplegarlo: `backend/railway.toml` instala dependencias, aplica migraciones Alembic no destructivas y arranca Uvicorn con health check; `DESPLIEGUE_RAILWAY.md` documenta servicios separados, variables y persistencia de fotografías en MySQL. Se validaron compilación Vue/TypeScript, dependencias Python y versión Alembic local. La promoción queda pendiente de configurar los secretos y dominios HTTPS reales en Railway.
+- **COMPLETADO 2026-11-11:** se verificó la cadena Railway de `DATABASE_URL`: FastAPI y Alembic aceptan la URL MySQL `mysql://` del proveedor y la normalizan a `mysql+pymysql://`. El override opcional `MIGRATION_DATABASE_URL` recibe el mismo tratamiento. Se comprobó la generación Alembic offline sin conectarse ni aplicar DDL.

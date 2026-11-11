@@ -3,6 +3,11 @@ from pydantic import field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+def normalize_database_url(value: str) -> str:
+    """Use the PyMySQL driver for Railway and SQLAlchemy MySQL URLs."""
+    return value.replace("mysql://", "mysql+pymysql://", 1) if value.startswith("mysql://") else value
+
+
 class Settings(BaseSettings):
     database_url: str
     jwt_secret: str
@@ -16,7 +21,7 @@ class Settings(BaseSettings):
     @classmethod
     def use_pymysql_driver(cls, value: str) -> str:
         """Accept Railway's ``mysql://`` URL while keeping SQLAlchemy explicit."""
-        return value.replace("mysql://", "mysql+pymysql://", 1) if value.startswith("mysql://") else value
+        return normalize_database_url(value)
 
     @property
     def cors_origin_list(self) -> list[str]:
