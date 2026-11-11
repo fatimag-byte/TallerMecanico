@@ -56,6 +56,7 @@
 
 - **Preparación Railway 2026-11-11:** se añadieron configuración de arranque de backend, ejemplos de entorno sin secretos, normalización de URL MySQL/CORS y endpoint de salud de solo lectura. `alembic current` confirmó `20261110_0008 (head)` contra MySQL local; `npm run build`, `compileall` y `pip check` finalizaron satisfactoriamente. No se ejecutó ningún despliegue ni migración de escritura.
 - **Verificación Railway 2026-11-11:** `DATABASE_URL` y el override opcional de migración aceptan `mysql://` de Railway y lo convierten al driver PyMySQL. `alembic upgrade head --sql` se ejecutó con una URL simulada, generando SQL MySQL sin red ni cambios de esquema; el manifiesto conserva `alembic upgrade head && uvicorn ... --port $PORT` y health check `/api/health`.
+- **Host de preview Railway 2026-11-11:** `frontend/vite.config.ts` limita `preview.allowedHosts` a `just-clarity-production-3a213deb.up.railway.app`, resolviendo el rechazo de host sin permitir comodines ni cambiar el servidor local o las rutas SPA. La compilación de producción se validó con `npm run build`.
 
 - Frontend: Vue `^3.5.13`, Vue Router `^4.5.0`, Vuetify `^3.7.6`, Axios `^1.7.9`, Vite `^6.0.5`, TypeScript `~5.6.3`.
 - Backend declarado: FastAPI `0.115.6`, SQLAlchemy `2.0.45`, Alembic `1.14.1`, PyMySQL `1.1.1`, passlib `1.7.4` con bcrypt `4.3.0`, python-jose `3.3.0`.
