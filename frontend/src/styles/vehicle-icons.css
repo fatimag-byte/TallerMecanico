@@ -1,0 +1,6 @@
+/* Compatibilidad con la versión instalada de Material Design Icons:
+   `mdi-car-plus` no dispone de glifo en esta fuente; se muestra el vehículo
+   disponible para los controles ya conectados a la acción de registro. */
+.mdi-car-plus::before {
+  content: "\F11BE";
+}

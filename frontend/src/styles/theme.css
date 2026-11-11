@@ -1,0 +1,1272 @@
+/* Tema global: las vistas mantienen su composición, pero usan superficies y
+   contrastes consistentes cuando Vuetify cambia a `dark`. */
+:root { color-scheme: light; }
+.v-theme--dark { color-scheme: dark; }
+
+.v-theme--dark .v-application,
+.v-theme--dark .v-main,
+.v-theme--dark .admin-main,
+.v-theme--dark .page-shell,
+.v-theme--dark .admin-container {
+  background: #11161b !important;
+  color: #eaf0f7;
+}
+
+body .v-application.v-theme--dark {
+  background: #11161b !important;
+}
+
+/* El overlay de un tooltip ocupa toda la vista; solamente su contenido debe
+   tener color. Evita que un tooltip del menú cubra la pantalla. */
+.v-overlay.v-tooltip.v-theme--dark {
+  background: transparent !important;
+}
+
+.v-theme--dark .admin-drawer {
+  background: #152339 !important;
+  border-color: #2d3e57 !important;
+}
+
+.v-theme--dark .admin-topbar {
+  background: #171d23 !important;
+  border-bottom-color: #303a45 !important;
+}
+
+.v-theme--dark .admin-drawer .v-list-item { color: #b9c7da !important; }
+.v-theme--dark .admin-drawer .v-list-item:hover { background: #223654 !important; }
+.v-theme--dark .admin-drawer .v-list-item--active { background: #476fd7 !important; color: #fff !important; }
+
+.v-theme--dark .v-card,
+.v-theme--dark .v-sheet,
+.v-theme--dark .module-card,
+.v-theme--dark .admin-card,
+.v-theme--dark .metric,
+.v-theme--dark .metric-card,
+.v-theme--dark .data-card,
+.v-theme--dark .dialog-card,
+.v-theme--dark .action-footer {
+  background: #20262d !important;
+  border-color: #35404b !important;
+  color: #eaf0f7 !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .24) !important;
+}
+
+.v-theme--dark .v-dialog .v-card,
+.v-theme--dark .v-menu .v-list,
+.v-theme--dark .v-overlay__content .v-card,
+.v-theme--dark .v-overlay__content .v-list {
+  background: #20262d !important;
+  color: #eaf0f7 !important;
+}
+
+.v-theme--dark .page-header h1,
+.v-theme--dark .page-header h2,
+.v-theme--dark .card-heading h2,
+.v-theme--dark .card-title h2,
+.v-theme--dark .table-heading h2,
+.v-theme--dark .dialog-heading h2,
+.v-theme--dark .metric strong,
+.v-theme--dark .metric-card strong,
+.v-theme--dark .customer-name strong,
+.v-theme--dark .contact-cell span,
+.v-theme--dark .workshop-name,
+.v-theme--dark .role-name,
+.v-theme--dark .user-info strong,
+.v-theme--dark .detail-grid p,
+.v-theme--dark .detail-grid span {
+  color: #f3f6fb !important;
+}
+
+.v-theme--dark .page-header p,
+.v-theme--dark .subtitle,
+.v-theme--dark .card-heading p,
+.v-theme--dark .card-title p,
+.v-theme--dark .table-heading p,
+.v-theme--dark .dialog-heading p,
+.v-theme--dark .metric span,
+.v-theme--dark .metric-card span,
+.v-theme--dark .customer-name small,
+.v-theme--dark .contact-cell small,
+.v-theme--dark .workshop-table small,
+.v-theme--dark .workshop-table span,
+.v-theme--dark .field-help,
+.v-theme--dark .footer-note,
+.v-theme--dark .action-footer p,
+.v-theme--dark .field-support,
+.v-theme--dark .uniqueness-note,
+.v-theme--dark .info-strip {
+  color: #acb8c7 !important;
+}
+
+.v-theme--dark .v-field,
+.v-theme--dark .v-text-field .v-field,
+.v-theme--dark .v-select .v-field,
+.v-theme--dark .v-autocomplete .v-field {
+  background: #171d23 !important;
+  color: #edf2f8 !important;
+}
+
+.v-theme--dark .v-field__outline__start,
+.v-theme--dark .v-field__outline__notch::before,
+.v-theme--dark .v-field__outline__notch::after,
+.v-theme--dark .v-field__outline__end { border-color: #52606e !important; }
+.v-theme--dark .v-field--focused .v-field__outline__start,
+.v-theme--dark .v-field--focused .v-field__outline__notch::before,
+.v-theme--dark .v-field--focused .v-field__outline__notch::after,
+.v-theme--dark .v-field--focused .v-field__outline__end { border-color: #7ea4ff !important; }
+.v-theme--dark input,
+.v-theme--dark textarea,
+.v-theme--dark .v-field__input,
+.v-theme--dark .v-select__selection,
+.v-theme--dark .v-label,
+.v-theme--dark .v-field__append-inner,
+.v-theme--dark .v-field__prepend-inner { color: #edf2f8 !important; }
+.v-theme--dark .v-field__input::placeholder { color: #98a5b4 !important; opacity: 1; }
+.v-theme--dark .v-messages,
+.v-theme--dark .v-input__details { color: #acb8c7 !important; }
+
+.v-theme--dark .v-table,
+.v-theme--dark .v-data-table,
+.v-theme--dark .v-data-table__tr,
+.v-theme--dark .v-data-table__td { background: #20262d !important; color: #eaf0f7 !important; }
+.v-theme--dark .v-table thead tr th,
+.v-theme--dark .v-data-table thead tr th,
+.v-theme--dark .customer-table th,
+.v-theme--dark .workshop-table th,
+.v-theme--dark .roles-table th { background: #2a313a !important; color: #b9c7d8 !important; }
+.v-theme--dark .v-table tbody td,
+.v-theme--dark .v-data-table tbody td,
+.v-theme--dark .customer-table td,
+.v-theme--dark .workshop-table td,
+.v-theme--dark .roles-table td { border-color: #35404b !important; }
+.v-theme--dark .v-data-table tbody tr:hover td,
+.v-theme--dark .roles-table tbody tr:hover { background: #293442 !important; }
+
+.v-theme--dark .detail-grid p,
+.v-theme--dark .user-card-item,
+.v-theme--dark .custom-file-row,
+.v-theme--dark .photo-upload-zone,
+.v-theme--dark .empty-users,
+.v-theme--dark .empty-selection { background: #171d23 !important; border-color: #35404b !important; }
+.v-theme--dark .v-divider { border-color: #35404b !important; opacity: 1; }
+.v-theme--dark .v-btn--variant-text { color: #c9d8ff; }
+.v-theme--dark .v-alert { border-color: currentColor; }
+
+/* Acceso público: usa exactamente el mismo tema almacenado que el área privada. */
+.v-theme--dark .auth-page { background: #11161b !important; }
+.v-theme--dark .auth-page .identity-panel { background: linear-gradient(145deg, #152339, #1d304a) !important; }
+.v-theme--dark .auth-page .form-panel { background: linear-gradient(135deg, #11161b, #18212c) !important; }
+.v-theme--dark .auth-page .auth-card { background: #20262d !important; border-color: #35404b !important; }
+.v-theme--dark .auth-page .auth-card h2,
+.v-theme--dark .auth-page .mobile-brand { color: #f3f6fb !important; }
+.v-theme--dark .auth-page .subtitle { color: #acb8c7 !important; }
+.v-theme--dark .auth-page .theme-toggle { background: transparent !important; border-color: #52606e !important; color: #eaf0f7 !important; }
+.v-theme--dark .auth-page .section-title { color: #9fbaff !important; border-bottom-color: #35404b !important; }
+.v-theme--dark .auth-page .auth-form .v-field { background: #30363d !important; border-radius: 10px; }
+.v-theme--dark .auth-page .auth-form .v-field__outline { background: transparent !important; }
+.v-theme--dark .auth-page .auth-form .v-field__outline__start,
+.v-theme--dark .auth-page .auth-form .v-field__outline__notch::before,
+.v-theme--dark .auth-page .auth-form .v-field__outline__notch::after,
+.v-theme--dark .auth-page .auth-form .v-field__outline__end { border-color: #596572 !important; }
+.v-theme--dark .auth-page .auth-form .v-field--focused .v-field__outline__start,
+.v-theme--dark .auth-page .auth-form .v-field--focused .v-field__outline__notch::before,
+.v-theme--dark .auth-page .auth-form .v-field--focused .v-field__outline__notch::after,
+.v-theme--dark .auth-page .auth-form .v-field--focused .v-field__outline__end { border-color: #8faeff !important; }
+.v-theme--dark .auth-page .auth-form input,
+.v-theme--dark .auth-page .auth-form .v-field__input { color: #f5f7fb !important; caret-color: #a9c4ff; }
+.v-theme--dark .auth-page .auth-form .v-field__input::placeholder { color: #b8c1cc !important; opacity: 1; }
+.v-theme--dark .auth-page .auth-form .v-field__prepend-inner,
+.v-theme--dark .auth-page .auth-form .v-field__append-inner,
+.v-theme--dark .auth-page .auth-form .v-field__prepend-inner .v-icon,
+.v-theme--dark .auth-page .auth-form .v-field__append-inner .v-icon,
+.v-theme--dark .auth-page .theme-toggle .v-icon,
+.v-theme--dark .auth-page .action-btn .v-icon,
+.v-theme--dark .auth-page .brand-icon .v-icon { color: #d8e2f1 !important; background: transparent !important; box-shadow: none !important; opacity: 1; }
+.v-theme--dark .auth-page .brand-icon .v-icon { color: #172b4d !important; }
+.v-theme--dark .auth-page .v-input__details,
+.v-theme--dark .auth-page .v-messages,
+.v-theme--dark .auth-page .login-options,
+.v-theme--dark .auth-page .v-selection-control { background: transparent !important; }
+.v-theme--dark .auth-page .v-messages__message { color: #b8c1cc !important; font-weight: 400; }
+.v-theme--dark .auth-page .v-input--error .v-messages__message { color: #ffaca5 !important; }
+.v-theme--dark .auth-page input:-webkit-autofill,
+.v-theme--dark .auth-page input:-webkit-autofill:hover,
+.v-theme--dark .auth-page input:-webkit-autofill:focus { -webkit-text-fill-color: #f5f7fb; -webkit-box-shadow: 0 0 0 1000px #30363d inset; caret-color: #a9c4ff; }
+
+/* Ajuste visual del modo oscuro: superficies neutras, contraste de lectura e
+   iconografía plana para que el color de acento sea el protagonista. */
+.v-theme--dark .admin-main,
+.v-theme--dark .page-shell,
+.v-theme--dark .admin-container,
+body .v-application.v-theme--dark { background: #101419 !important; }
+.v-theme--dark .admin-topbar { background: #191f26 !important; }
+.v-theme--dark .admin-drawer { background: #17283e !important; }
+
+.v-theme--dark .v-card,
+.v-theme--dark .module-card,
+.v-theme--dark .admin-card,
+.v-theme--dark .metric,
+.v-theme--dark .metric-card,
+.v-theme--dark .data-card,
+.v-theme--dark .dialog-card,
+.v-theme--dark .action-footer { background: #1e252d !important; border-color: #35414e !important; }
+.v-theme--dark .v-table thead tr th,
+.v-theme--dark .v-data-table thead tr th,
+.v-theme--dark .customer-table th,
+.v-theme--dark .workshop-table th,
+.v-theme--dark .roles-table th { background: #29333f !important; color: #e2e9f3 !important; }
+
+.v-theme--dark .page-header h1,
+.v-theme--dark .page-header h2,
+.v-theme--dark .card-heading h2,
+.v-theme--dark .card-title h2,
+.v-theme--dark .table-heading h2,
+.v-theme--dark .dialog-heading h2,
+.v-theme--dark .metric strong,
+.v-theme--dark .metric-card strong,
+.v-theme--dark .customer-name strong,
+.v-theme--dark .contact-cell span,
+.v-theme--dark .workshop-name,
+.v-theme--dark .role-name,
+.v-theme--dark .user-info strong { color: #ffffff !important; }
+
+.v-theme--dark .page-header p,
+.v-theme--dark .subtitle,
+.v-theme--dark .card-heading p,
+.v-theme--dark .card-title p,
+.v-theme--dark .table-heading p,
+.v-theme--dark .dialog-heading p,
+.v-theme--dark .metric span,
+.v-theme--dark .metric-card span,
+.v-theme--dark .customer-name small,
+.v-theme--dark .contact-cell small,
+.v-theme--dark .workshop-table small,
+.v-theme--dark .workshop-table span,
+.v-theme--dark .action-footer p { color: #c9d4e1 !important; }
+
+.v-theme--dark .v-field,
+.v-theme--dark .v-text-field .v-field,
+.v-theme--dark .v-select .v-field,
+.v-theme--dark .v-autocomplete .v-field { background: #151b21 !important; }
+.v-theme--dark input,
+.v-theme--dark textarea,
+.v-theme--dark .v-field__input,
+.v-theme--dark .v-select__selection,
+.v-theme--dark .v-label { color: #f2f6fb !important; }
+.v-theme--dark .v-label.v-field-label--floating { color: #b9c8d9 !important; }
+.v-theme--dark .v-field__input::placeholder { color: #b4c0ce !important; }
+
+.v-theme--dark .header-icon,
+.v-theme--dark .metric-icon,
+.v-theme--dark .card-icon,
+.v-theme--dark .heading-icon,
+.v-theme--dark .v-avatar,
+.v-theme--dark .v-btn--icon { box-shadow: none !important; }
+.v-theme--dark .header-icon,
+.v-theme--dark .metric-icon,
+.v-theme--dark .card-icon,
+.v-theme--dark .heading-icon { background: #2a3543 !important; color: #9db7ff !important; }
+.v-theme--dark .metric-icon.green { background: #193c2d !important; color: #75d9a0 !important; }
+.v-theme--dark .metric-icon.amber,
+.v-theme--dark .heading-icon.ink { background: #41331e !important; color: #f0c878 !important; }
+
+/* Iconografía administrativa: en oscuro se mantiene plana y legible, sin
+   cajas azules, moradas o ámbar detrás de cada símbolo. */
+body .v-theme--dark .header-icon,
+body .v-theme--dark .metric-icon,
+body .v-theme--dark .stat-icon,
+body .v-theme--dark .card-icon,
+body .v-theme--dark .heading-icon,
+body .v-theme--dark .details-hero__icon,
+body .v-theme--dark .mini-car,
+body .v-theme--dark .header-icon.blue,
+body .v-theme--dark .metric-icon.green,
+body .v-theme--dark .metric-icon.amber,
+body .v-theme--dark .heading-icon.ink {
+  background: transparent !important;
+  color: #a9c4ff !important;
+  box-shadow: none !important;
+}
+
+/* Las reglas locales de algunas vistas usan azul tinta. En fondo oscuro se
+   sustituyen por tonos claros para conservar contraste suficiente. */
+body .v-theme--dark .section-label,
+body .v-theme--dark .eyebrow { color: #a9c4ff !important; }
+body .v-theme--dark .page-header h1,
+body .v-theme--dark .card-heading h2,
+body .v-theme--dark .card-title h2,
+body .v-theme--dark .table-heading h2,
+body .v-theme--dark .dialog-heading h2,
+body .v-theme--dark .card-toolbar h2,
+body .v-theme--dark .users-heading h2,
+body .v-theme--dark .metric strong,
+body .v-theme--dark .metric-card strong,
+body .v-theme--dark .stat-number,
+body .v-theme--dark .role-name,
+body .v-theme--dark .status-active,
+body .v-theme--dark .user-section-title { color: #f7f9fc !important; }
+body .v-theme--dark .page-header p,
+body .v-theme--dark .card-heading p,
+body .v-theme--dark .card-title p,
+body .v-theme--dark .table-heading p,
+body .v-theme--dark .dialog-heading p,
+body .v-theme--dark .stat-label,
+body .v-theme--dark .metric span,
+body .v-theme--dark .metric-card span,
+body .v-theme--dark .role-description,
+body .v-theme--dark .date-cell,
+body .v-theme--dark .user-info span { color: #cbd6e4 !important; }
+
+/* Selección de filas: sin blanco intenso; conserva la jerarquía visual y la
+   lectura de cada columna sobre una capa azul suave. */
+body .v-theme--dark .roles-table tbody tr.selected,
+body .v-theme--dark .roles-table tbody tr.selected td {
+  background: rgba(113, 146, 255, .16) !important;
+}
+body .v-theme--dark .roles-table tbody tr.selected td {
+  border-color: rgba(151, 178, 255, .28) !important;
+}
+body .v-theme--dark .roles-table tbody tr.selected,
+body .v-theme--dark .roles-table tbody tr.selected .role-name,
+body .v-theme--dark .roles-table tbody tr.selected .status-active { color: #ffffff !important; }
+body .v-theme--dark .roles-table tbody tr.selected .role-description,
+body .v-theme--dark .roles-table tbody tr.selected .date-cell,
+body .v-theme--dark .roles-table tbody tr.selected .status-inactive { color: #d7e2f1 !important; }
+
+/* Ficha y directorio de vehículos: mismos contrastes que el resto de módulos. */
+body .v-theme--dark .vehicle-table td { border-color: #35414e !important; }
+body .v-theme--dark .vehicle-table tbody tr:hover { background: rgba(138, 170, 235, .08) !important; }
+body .v-theme--dark .vehicle-cell strong,
+body .v-theme--dark .owner-card strong,
+body .v-theme--dark .spec-grid strong,
+body .v-theme--dark .workshop-banner strong,
+body .v-theme--dark .created-date strong,
+body .v-theme--dark .details-hero h2,
+body .v-theme--dark .section-title h3,
+body .v-theme--dark .vehicle-mobile strong { color: #f5f8fc !important; }
+body .v-theme--dark .vehicle-cell span,
+body .v-theme--dark .vehicle-cell small,
+body .v-theme--dark .person-cell span,
+body .v-theme--dark .workshop-cell span,
+body .v-theme--dark .vin-line,
+body .v-theme--dark .owner-card span,
+body .v-theme--dark .address-line,
+body .v-theme--dark .vehicle-mobile span,
+body .v-theme--dark .vehicle-mobile p { color: #c7d3e1 !important; }
+body .v-theme--dark .owner-card,
+body .v-theme--dark .spec-grid > div { background: #151b21 !important; border-color: #35414e !important; }
+body .v-theme--dark .workshop-banner { background: #20334c !important; color: #a9c4ff !important; }
+body .v-theme--dark .created-date { border-color: #43556b !important; }
+body .v-theme--dark .no-photos { border-color: #43556b !important; color: #c7d3e1 !important; }
+body .v-theme--dark .details-hero { background: #202c3a !important; border-bottom-color: #35414e !important; }
+body .v-theme--dark .workshop-name strong,
+body .v-theme--dark .location strong,
+body .v-theme--dark .details-hero h2,
+body .v-theme--dark .info-card strong,
+body .v-theme--dark .address-card strong,
+body .v-theme--dark .status-row strong,
+body .v-theme--dark .workshop-mobile strong { color: #f5f8fc !important; }
+body .v-theme--dark .workshop-name small,
+body .v-theme--dark .location small,
+body .v-theme--dark .contact,
+body .v-theme--dark .workshop-mobile span,
+body .v-theme--dark .workshop-mobile p,
+body .v-theme--dark .mobile-actions small { color: #c7d3e1 !important; }
+body .v-theme--dark .info-card,
+body .v-theme--dark .address-card,
+body .v-theme--dark .status-row > div { background: #151b21 !important; border-color: #35414e !important; }
+body .v-theme--dark .no-photo { background: #151b21 !important; border-color: #43556b !important; color: #c7d3e1 !important; }
+
+/* Administración de talleres: estilos fuera del árbol teletransportado del modal. */
+.workshops-admin .metrics { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 18px !important; margin-bottom: 24px !important; }
+.workshops-admin .metric { min-height: 126px !important; padding: 20px !important; display: flex !important; flex-direction: column !important; gap: 8px !important; border: 1px solid #e4e9f2 !important; border-radius: 16px !important; background: #fff !important; box-shadow: 0 12px 28px rgba(23,43,77,.05) !important; }
+.workshops-admin .metric strong { color: #172b4d !important; font-size: 1.75rem !important; }.workshops-admin .metric span { color: #748197 !important; font-size: .82rem !important; }
+.workshops-admin .metric-icon { display: grid !important; place-items: center !important; width: 40px !important; height: 40px !important; border-radius: 12px !important; background: #edf3ff !important; color: #3867de !important; }.workshops-admin .metric-icon.green{background:#e7f6ed!important;color:#25834a!important}.workshops-admin .metric-icon.amber{background:#fff4df!important;color:#b87920!important}
+.workshops-admin .filter-row { display: grid !important; grid-template-columns: minmax(260px, 1.4fr) minmax(190px, .7fr) !important; gap: 14px !important; }
+.workshops-admin .workshop-table th { height: 50px !important; background: #f4f7fc !important; color: #64748b !important; font-size: .71rem !important; font-weight: 800 !important; letter-spacing: .5px !important; text-transform: uppercase !important; }.workshops-admin .workshop-table td { padding-top: 14px !important; padding-bottom: 14px !important; border-color: #edf0f5 !important; }
+.workshop-details { border: 1px solid #e4e9f2 !important; border-radius: 16px !important; overflow: hidden !important; }.workshop-details .details-hero { display: flex !important; align-items: flex-start !important; gap: 14px !important; padding: 26px 28px 22px !important; background: linear-gradient(135deg,#f5f9ff 0%,#edf4ff 100%) !important; border-bottom: 1px solid #dfe9f7 !important; }.workshop-details .details-hero__icon { display: grid !important; place-items: center !important; width: 56px !important; height: 56px !important; border-radius: 13px !important; background: #edf3ff !important; color: #3867de !important; }.workshop-details .details-hero h2 { margin: 0 !important; color: #172b4d !important; font-size: 1.35rem !important; }.workshop-details .details-hero p { margin: 8px 0 0 !important; color: #667993 !important; }
+.workshop-details .details-content { padding: 24px 28px 8px !important; }.workshop-details .details-grid { display: grid !important; grid-template-columns: minmax(280px,.9fr) minmax(300px,1.1fr) !important; gap: 24px !important; }.workshop-details .workshop-photo,.workshop-details .no-photo { border: 1px solid #e4eaf4 !important; border-radius: 14px !important; background: #f3f6fb !important; }.workshop-details .no-photo { height: 260px !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 9px !important; color: #78879b !important; }.workshop-details .section-title { display: flex !important; gap: 14px !important; align-items: flex-start !important; margin-bottom: 14px !important; }.workshop-details .section-title h3 { margin: 0 !important; color: #172b4d !important; }.workshop-details .section-title p { margin: 5px 0 0 !important; color: #66758b !important; }.workshop-details .info-card,.workshop-details .address-card { padding: 15px !important; border: 1px solid #e6edf7 !important; border-radius: 13px !important; background: #f8faff !important; }.workshop-details .address-title { margin-top: 22px !important; }.workshop-details .status-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; margin-top: 16px !important; }.workshop-details .status-row > div { padding: 12px !important; border-radius: 11px !important; background: #f6f8fc !important; }.workshop-details .dialog-actions { padding: 18px 28px 22px !important; }
+.workshop-details .info-card > span,.workshop-details .address-card > span,.workshop-details .status-row span { display:block !important; color:#748197 !important; font-size:.74rem !important; font-weight:700 !important; }.workshop-details .info-card > strong { display:flex !important; align-items:center !important; gap:7px !important; margin-top:7px !important; color:#263a58 !important; overflow-wrap:anywhere !important; }.workshop-details .address-card > strong { display:block !important; color:#263a58 !important; }.workshop-details .address-card > span { margin-top:5px !important; font-weight:500 !important; font-size:.82rem !important; }.workshop-details .address-card .v-chip,.workshop-details .status-row .v-chip { margin-top:9px !important; }.workshop-details .status-row strong { display:block !important; margin-top:7px !important; color:#263a58 !important; font-size:.82rem !important; }
+@media (max-width:850px){.workshops-admin .metrics{grid-template-columns:1fr 1fr!important}.workshops-admin .filter-row,.workshop-details .details-grid{grid-template-columns:1fr!important}}@media(max-width:560px){.workshops-admin .metrics{grid-template-columns:1fr!important}.workshop-details .details-hero,.workshop-details .details-content,.workshop-details .dialog-actions{padding-left:18px!important;padding-right:18px!important}.workshop-details .status-row{grid-template-columns:1fr!important}}
+body .v-theme--dark .workshops-admin .metric { background: #1e252d !important; border-color: #35414e !important; }body .v-theme--dark .workshops-admin .metric strong { color:#f7f9fc!important; }body .v-theme--dark .workshops-admin .metric span { color:#cbd6e4!important; }body .v-theme--dark .workshop-details .details-hero { background:#202c3a!important;border-bottom-color:#35414e!important; }body .v-theme--dark .workshop-details .details-hero h2,body .v-theme--dark .workshop-details .section-title h3 { color:#f5f8fc!important; }body .v-theme--dark .workshop-details .details-hero p,body .v-theme--dark .workshop-details .section-title p { color:#c7d3e1!important; }body .v-theme--dark .workshop-details .info-card,body .v-theme--dark .workshop-details .address-card,body .v-theme--dark .workshop-details .status-row>div,body .v-theme--dark .workshop-details .no-photo { background:#151b21!important;border-color:#35414e!important;color:#c7d3e1!important; }
+
+/* Estado operativo: señal inequívoca sin depender únicamente del color. */
+.workshop-details .status-row .operational-status { border: 1px solid transparent !important; }
+.workshop-details .status-row .operational-status strong { display: inline-flex !important; align-items: center !important; gap: 7px !important; margin-top: 8px !important; padding: 7px 10px !important; border-radius: 999px !important; font-weight: 800 !important; }
+.workshop-details .status-row .operational-status--active { background: #edf9f0 !important; border-color: #b9e8c6 !important; }
+.workshop-details .status-row .operational-status--active strong { color: #12733c !important; background: #d7f3df !important; }
+.workshop-details .status-row .operational-status--inactive { background: #fff3ef !important; border-color: #f4c7b9 !important; }
+.workshop-details .status-row .operational-status--inactive strong { color: #ad3d22 !important; background: #ffe1d6 !important; }
+body .v-theme--dark .workshop-details .status-row .operational-status--active { background: #162a20 !important; border-color: #2d7547 !important; }
+body .v-theme--dark .workshop-details .status-row .operational-status--active strong { color: #9ce7b3 !important; background: #1d4930 !important; }
+body .v-theme--dark .workshop-details .status-row .operational-status--inactive { background: #321d1b !important; border-color: #884431 !important; }
+body .v-theme--dark .workshop-details .status-row .operational-status--inactive strong { color: #ffc1ad !important; background: #572b24 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .v-theme--dark * { transition-duration: 0s !important; }
+}
+
+/* Formularios públicos: las capas internas de Vuetify no deben heredar
+   superficies oscuras. Así se evita una banda azul detrás de ayudas, errores
+   y controles de acceso sin afectar las tarjetas ni paneles principales. */
+body .v-theme--dark .auth-page .auth-form .v-field__outline,
+body .v-theme--dark .auth-page .auth-form .v-field__overlay,
+body .v-theme--dark .auth-page .auth-form .v-input,
+body .v-theme--dark .auth-page .auth-form .v-input__details,
+body .v-theme--dark .auth-page .auth-form .v-messages,
+body .v-theme--dark .auth-page .login-options,
+body .v-theme--dark .auth-page .v-selection-control {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+body .v-theme--dark .auth-page .auth-form .v-field {
+  background-color: #30363d !important;
+}
+
+/* El autofill de Chromium sólo pinta el input; el contenedor mantiene el
+   mismo tono para integrar iconos, ojo y bordes sin franjas claras. */
+.auth-page .auth-form .v-field {
+  /* La etiqueta flotante de Vuetify sobresale sobre el borde superior.
+     Mantenerla visible no afecta la superficie continua del autofill. */
+  overflow: visible;
+}
+.auth-page .auth-form .v-field:has(input:-webkit-autofill) {
+  background-color: #edf3ff !important;
+}
+.auth-page .auth-form input:-webkit-autofill,
+.auth-page .auth-form input:-webkit-autofill:hover,
+.auth-page .auth-form input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #edf3ff inset !important;
+  -webkit-text-fill-color: #172b4d !important;
+  caret-color: #172b4d;
+  border-radius: inherit;
+}
+body .v-theme--dark .auth-page .auth-form .v-field:has(input:-webkit-autofill) {
+  background-color: #30363d !important;
+}
+body .v-theme--dark .auth-page .auth-form input:-webkit-autofill,
+body .v-theme--dark .auth-page .auth-form input:-webkit-autofill:hover,
+body .v-theme--dark .auth-page .auth-form input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #30363d inset !important;
+  -webkit-text-fill-color: #f5f7fb !important;
+  caret-color: #a9c4ff;
+}
+
+body .v-theme--dark .auth-page .auth-form .v-input__details,
+body .v-theme--dark .auth-page .auth-form .v-messages {
+  min-height: 0;
+}
+
+body .v-theme--dark .auth-page .auth-form .v-input--error .v-field__outline__start,
+body .v-theme--dark .auth-page .auth-form .v-input--error .v-field__outline__notch::before,
+body .v-theme--dark .auth-page .auth-form .v-input--error .v-field__outline__notch::after,
+body .v-theme--dark .auth-page .auth-form .v-input--error .v-field__outline__end {
+  border-color: #ff858a !important;
+}
+
+body .v-theme--dark .auth-page .auth-form .v-input--error .v-label,
+body .v-theme--dark .auth-page .auth-form .v-input--error .v-messages__message {
+  color: #ff9b9f !important;
+}
+
+body .v-theme--dark .auth-page .login-options .v-checkbox,
+body .v-theme--dark .auth-page .login-options .v-selection-control__input,
+body .v-theme--dark .auth-page .login-options .v-selection-control__input .v-icon {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Avisos de autenticación: una sola presentación suave y legible en ambos temas. */
+.auth-page .auth-error-alert {
+  border: 1px solid #f2c7c7;
+  border-radius: 12px;
+  background-color: #fff5f5;
+  color: #9f2f35;
+  box-shadow: none;
+}
+.auth-page .auth-error-alert .v-alert__underlay {
+  background: transparent;
+  opacity: 0;
+}
+.auth-page .auth-error-alert .v-alert__prepend,
+.auth-page .auth-error-alert .v-alert__icon,
+.auth-page .auth-error-alert .v-alert__prepend .v-icon,
+.auth-page .auth-error-alert .v-alert__close .v-btn {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.auth-page .auth-error-alert .v-alert__close .v-btn__overlay,
+.auth-page .auth-error-alert .v-alert__close .v-btn__underlay {
+  background: transparent !important;
+  opacity: 0 !important;
+}
+.auth-page .auth-error-alert .v-alert__icon,
+.auth-page .auth-error-alert .v-alert__close {
+  color: #bd4349;
+  opacity: 1;
+}
+.auth-page .auth-error-alert .v-alert__content {
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+.auth-page .auth-error-alert .v-alert__close .v-btn {
+  min-width: 30px;
+  min-height: 30px;
+}
+body .v-theme--dark .auth-page .auth-error-alert {
+  border-color: #754047;
+  background-color: #321f24 !important;
+  color: #ffd7d9;
+}
+body .v-theme--dark .auth-page .auth-error-alert .v-alert__icon,
+body .v-theme--dark .auth-page .auth-error-alert .v-alert__close {
+  color: #ffb4b8;
+}
+
+/* Alta de centro automotriz: las capas internas de Vuetify deben mantener
+   superficies neutras. Así no aparecen bandas azul marino bajo controles,
+   ayudas o iconos, sin cambiar la tarjeta ni el tema claro. */
+body .v-theme--dark .workshop-page .admin-card,
+body .v-theme--dark .workshop-page .action-footer {
+  background: #20262d !important;
+  border-color: #35414e !important;
+}
+
+body .v-theme--dark .workshop-page .v-input,
+body .v-theme--dark .workshop-page .v-input__details,
+body .v-theme--dark .workshop-page .v-messages,
+body .v-theme--dark .workshop-page .v-field__overlay,
+body .v-theme--dark .workshop-page .v-field__prepend-inner,
+body .v-theme--dark .workshop-page .v-field__append-inner,
+body .v-theme--dark .workshop-page .v-field__clearable {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .v-theme--dark .workshop-page .v-field {
+  background: #30363d !important;
+  border-radius: 10px !important;
+  color: #f5f7fb !important;
+  overflow: visible;
+}
+
+body .v-theme--dark .workshop-page .v-field__outline {
+  background: transparent !important;
+}
+
+body .v-theme--dark .workshop-page .v-field__outline__start,
+body .v-theme--dark .workshop-page .v-field__outline__notch::before,
+body .v-theme--dark .workshop-page .v-field__outline__notch::after,
+body .v-theme--dark .workshop-page .v-field__outline__end {
+  border-color: #52606e !important;
+}
+
+body .v-theme--dark .workshop-page .v-field--focused .v-field__outline__start,
+body .v-theme--dark .workshop-page .v-field--focused .v-field__outline__notch::before,
+body .v-theme--dark .workshop-page .v-field--focused .v-field__outline__notch::after,
+body .v-theme--dark .workshop-page .v-field--focused .v-field__outline__end {
+  border-color: #8faeff !important;
+}
+
+body .v-theme--dark .workshop-page .page-header h1,
+body .v-theme--dark .workshop-page .card-heading h2 {
+  color: #f4f7fb !important;
+}
+
+body .v-theme--dark .workshop-page .page-header p,
+body .v-theme--dark .workshop-page .card-heading p {
+  color: #c5d0dc !important;
+}
+
+body .v-theme--dark .workshop-page .field-label,
+body .v-theme--dark .workshop-page .v-label,
+body .v-theme--dark .workshop-page .v-label.v-field-label--floating {
+  color: #bfd0e2 !important;
+}
+
+body .v-theme--dark .workshop-page input,
+body .v-theme--dark .workshop-page .v-field__input,
+body .v-theme--dark .workshop-page .v-select__selection,
+body .v-theme--dark .workshop-page .v-autocomplete .v-field__input {
+  color: #f5f7fb !important;
+  caret-color: #b6ccff;
+}
+
+body .v-theme--dark .workshop-page .v-field__input::placeholder {
+  color: #a8b3c0 !important;
+  opacity: 1;
+}
+
+body .v-theme--dark .workshop-page .field-help,
+body .v-theme--dark .workshop-page .v-messages__message,
+body .v-theme--dark .workshop-page .file-chosen-label,
+body .v-theme--dark .workshop-page .placeholder-text,
+body .v-theme--dark .workshop-page .footer-note {
+  color: #aebfd0 !important;
+  font-weight: 400;
+}
+
+body .v-theme--dark .workshop-page .v-input--error .v-messages__message,
+body .v-theme--dark .workshop-page .photo-error-text {
+  color: #ffaaa7 !important;
+  font-weight: 400 !important;
+}
+
+body .v-theme--dark .workshop-page .v-field__prepend-inner,
+body .v-theme--dark .workshop-page .v-field__append-inner,
+body .v-theme--dark .workshop-page .v-field__prepend-inner .v-icon,
+body .v-theme--dark .workshop-page .v-field__append-inner .v-icon,
+body .v-theme--dark .workshop-page .v-select__menu-icon {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #afc5dc !important;
+}
+
+body .v-theme--dark .workshop-page .header-icon-box,
+body .v-theme--dark .workshop-page .heading-icon,
+body .v-theme--dark .workshop-page .placeholder-icon {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #9dbdff !important;
+}
+
+body .v-theme--dark .workshop-page .photo-upload-zone,
+body .v-theme--dark .workshop-page .custom-file-row {
+  background: #252d36 !important;
+  border-color: #485666 !important;
+}
+
+body .v-theme--dark .workshop-page .photo-upload-zone:hover {
+  background: #2a3440 !important;
+  border-color: #779cf3 !important;
+}
+
+body .v-theme--dark .workshop-page .choose-file-btn {
+  background: #30363d !important;
+  border-color: #6d7f92 !important;
+  color: #f1f5fa !important;
+  box-shadow: none !important;
+}
+
+body .v-theme--dark .workshop-page .choose-file-btn:hover {
+  background: #3a4653 !important;
+  border-color: #9ab8ff !important;
+}
+
+/* Los selectores de domicilio se teletransportan fuera del formulario. La
+   clase de menú compartida conserva el mismo gris oscuro y evita paneles
+   azul marino al abrir Estado, Municipio o Colonia. */
+body .v-theme--dark .location-options-menu,
+body .v-theme--dark .location-options-menu .v-list,
+.location-options-menu.v-theme--dark,
+.location-options-menu.v-theme--dark .v-list {
+  background: #20262d !important;
+  border-color: #485666 !important;
+  color: #eaf0f7 !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .28) !important;
+}
+
+body .v-theme--dark .location-options-menu .v-list-item,
+body .v-theme--dark .location-options-menu .v-list-item-title,
+body .v-theme--dark .location-options-menu .v-list-item-subtitle,
+.location-options-menu.v-theme--dark .v-list-item,
+.location-options-menu.v-theme--dark .v-list-item-title,
+.location-options-menu.v-theme--dark .v-list-item-subtitle {
+  color: #dce5ef !important;
+}
+
+body .v-theme--dark .location-options-menu .v-list-item:hover,
+body .v-theme--dark .location-options-menu .v-list-item--active,
+.location-options-menu.v-theme--dark .v-list-item:hover,
+.location-options-menu.v-theme--dark .v-list-item--active {
+  background: rgba(135, 167, 232, .14) !important;
+}
+
+.v-overlay.v-menu.v-theme--dark,
+.v-overlay.v-menu.v-theme--dark .v-overlay__scrim {
+  background: transparent !important;
+}
+
+.v-overlay__content.v-theme--dark .v-list {
+  background: #20262d !important;
+  border: 1px solid #485666 !important;
+  color: #eaf0f7 !important;
+}
+
+.v-overlay__content.v-theme--dark .v-list-item,
+.v-overlay__content.v-theme--dark .v-list-item-title,
+.v-overlay__content.v-theme--dark .v-list-item-subtitle {
+  color: #dce5ef !important;
+}
+
+/* `v-menu` se teletransporta junto a `body`, fuera del nodo que contiene la
+   clase del tema. El selector relacional conserva el menú neutro únicamente
+   cuando la aplicación activa Vuetify oscuro. */
+body:has(.v-application.v-theme--dark) .v-overlay.v-menu .v-overlay__content,
+body:has(.v-application.v-theme--dark) .v-overlay.v-menu .v-list {
+  background: #20262d !important;
+  border-color: #485666 !important;
+}
+
+body:has(.v-application.v-theme--dark) .v-overlay.v-menu .v-list-item,
+body:has(.v-application.v-theme--dark) .v-overlay.v-menu .v-list-item-title,
+body:has(.v-application.v-theme--dark) .v-overlay.v-menu .v-list-item-subtitle {
+  color: #dce5ef !important;
+}
+
+body:has(.v-application.v-theme--dark) .v-overlay:has(.v-select__content),
+body:has(.v-application.v-theme--dark) .v-overlay:has(.v-autocomplete__content) {
+  background: transparent !important;
+}
+
+body:has(.v-application.v-theme--dark) .v-overlay.location-options-menu {
+  background: transparent !important;
+}
+
+body:has(.v-application.v-theme--dark) .v-overlay.location-options-menu .v-overlay__content,
+body:has(.v-application.v-theme--dark) .v-overlay.location-options-menu .v-list {
+  background: #20262d !important;
+  border-color: #485666 !important;
+}
+
+body:has(.v-application.v-theme--dark) .v-select__content,
+body:has(.v-application.v-theme--dark) .v-autocomplete__content {
+  background: #20262d !important;
+  border: 1px solid #485666 !important;
+  color: #dce5ef !important;
+}
+
+body:has(.v-application.v-theme--dark) .v-select__content .v-list-item,
+body:has(.v-application.v-theme--dark) .v-autocomplete__content .v-list-item {
+  color: #dce5ef !important;
+}
+
+/* Dashboard: contraste explícito para el directorio de acceso. */
+body .v-theme--dark .dashboard .dashboard-hero h1,
+body .v-theme--dark .dashboard .card-head h2,
+body .v-theme--dark .dashboard .user-cell strong { color: #f4f7fb !important; }
+body .v-theme--dark .dashboard .dashboard-hero > div > p:last-child,
+body .v-theme--dark .dashboard .card-head > div > p:last-child,
+body .v-theme--dark .dashboard .email-cell { color: #c4d0de !important; }
+body .v-theme--dark .dashboard .hero-status,
+body .v-theme--dark .dashboard .user-count { background: #172634 !important; border-color: #3a536b !important; color: #a8c7ff !important; }
+body .v-theme--dark .dashboard .metric-card,
+body .v-theme--dark .dashboard .data-card { background: #1d252e !important; border-color: #364451 !important; }
+body .v-theme--dark .dashboard .metric-card strong { color: #f5f8fc !important; }
+body .v-theme--dark .dashboard .metric-card span { color: #c6d1dd !important; }
+body .v-theme--dark .dashboard .metric-icon { background: #1e3654 !important; color: #a8c7ff !important; }
+body .v-theme--dark .dashboard .metric-icon--violet { background: #352c56 !important; color: #c5b7ff !important; }
+body .v-theme--dark .dashboard .metric-icon--amber { background: #47371e !important; color: #ffd28a !important; }
+body .v-theme--dark .dashboard .table-shell { border-color: #364451 !important; }
+body .v-theme--dark .dashboard .users-table th { background: #29333f !important; color: #e2e9f3 !important; }
+body .v-theme--dark .dashboard .users-table td { border-color: #364451 !important; color: #d9e2eb !important; }
+body .v-theme--dark .dashboard .users-table tbody tr:hover { background: #24303c !important; }
+body .v-theme--dark .dashboard .user-avatar { background: #213a58 !important; color: #b8d2ff !important; }
+body .v-theme--dark .dashboard .more-roles { color: #b4c2d2 !important; }
+body .v-theme--dark .dashboard .permission-summary { background: #192b3b !important; border-color: #3e5971 !important; color: #b8d2ff !important; }
+body .v-theme--dark .dashboard .permission-summary span,
+body .v-theme--dark .dashboard .info-icon,
+body .v-theme--dark .dashboard .empty-permissions { color: #bdcddd !important; }
+body .v-theme--dark .dashboard .users-table td::before { color: #afc0d1 !important; }
+
+/* Prioridad final: los iconos no usan fondos de color en modo oscuro. */
+body .v-theme--dark .header-icon,
+body .v-theme--dark .metric-icon,
+body .v-theme--dark .card-icon,
+body .v-theme--dark .heading-icon,
+body .v-theme--dark .details-hero__icon,
+body .v-theme--dark .mini-car {
+  background: transparent !important;
+  color: #a9c4ff !important;
+}
+
+/* Tema oscuro unificado. Esta capa final centraliza las superficies y evita
+   que reglas locales heredadas reintroduzcan azul tinta o texto ilegible. */
+body .v-theme--dark {
+  --ag-bg: #12171d;
+  --ag-surface: #20262e;
+  --ag-field: #30363d;
+  --ag-title: #f1f5f9;
+  --ag-text: #d5dee9;
+  --ag-muted: #aab8c9;
+  --ag-placeholder: #9caaba;
+  --ag-accent: #8daeff;
+  --ag-border: #3a4654;
+}
+body .v-theme--dark .v-application,
+body .v-theme--dark .v-main,
+body .v-theme--dark .admin-main,
+body .v-theme--dark .page-shell,
+body .v-theme--dark .admin-container,
+body .v-theme--dark .auth-page { background: var(--ag-bg) !important; color: var(--ag-text) !important; }
+body .v-theme--dark .v-card,
+body .v-theme--dark .v-sheet,
+body .v-theme--dark .module-card,
+body .v-theme--dark .admin-card,
+body .v-theme--dark .metric,
+body .v-theme--dark .metric-card,
+body .v-theme--dark .data-card,
+body .v-theme--dark .dialog-card,
+body .v-theme--dark .permission-dialog,
+body .v-theme--dark .action-footer { background: var(--ag-surface) !important; border-color: var(--ag-border) !important; }
+body .v-theme--dark .v-field,
+body .v-theme--dark .v-text-field .v-field,
+body .v-theme--dark .v-select .v-field,
+body .v-theme--dark .v-autocomplete .v-field { background: var(--ag-field) !important; }
+body .v-theme--dark .v-field__input::placeholder { color: var(--ag-placeholder) !important; }
+body .v-theme--dark .page-header h1,
+body .v-theme--dark .page-header h2,
+body .v-theme--dark .card-heading h2,
+body .v-theme--dark .card-title h2,
+body .v-theme--dark .table-heading h2,
+body .v-theme--dark .dialog-heading h2,
+body .v-theme--dark .permission-dialog h2,
+body .v-theme--dark .permission-dialog h3,
+body .v-theme--dark .permission-dialog strong { color: var(--ag-title) !important; }
+body .v-theme--dark .page-header p,
+body .v-theme--dark .subtitle,
+body .v-theme--dark .card-heading p,
+body .v-theme--dark .card-title p,
+body .v-theme--dark .table-heading p,
+body .v-theme--dark .dialog-heading p,
+body .v-theme--dark .permission-dialog p,
+body .v-theme--dark .permission-dialog span,
+body .v-theme--dark .field-help,
+body .v-theme--dark .v-messages,
+body .v-theme--dark .v-input__details { color: var(--ag-muted) !important; }
+
+/* Los símbolos conservan su color, pero nunca un recuadro accidental. */
+body .v-theme--dark .v-icon,
+body .v-theme--dark .v-btn__prepend .v-icon,
+body .v-theme--dark .v-btn__append .v-icon,
+body .v-theme--dark .v-alert__icon { background: transparent !important; box-shadow: none !important; }
+body .v-theme--dark .header-icon,
+body .v-theme--dark .metric-icon,
+body .v-theme--dark .card-icon,
+body .v-theme--dark .heading-icon,
+body .v-theme--dark .details-hero__icon,
+body .v-theme--dark .mini-car,
+body .v-theme--dark .recovery-icon { background: transparent !important; color: var(--ag-accent) !important; }
+body .v-theme--dark .dashboard .metric-icon { background: transparent !important; color: var(--ag-accent) !important; }
+body .v-theme--dark .eyebrow,
+body .v-theme--dark .section-label,
+body .v-theme--dark .section-kicker { color: var(--ag-accent) !important; }
+
+/* Diálogos: jerarquía suave, sin superficies blancas. */
+body .v-theme--dark .permission-dialog .permission-dialog__header { border-color: var(--ag-border) !important; }
+body .v-theme--dark .permission-dialog .profile-summary { background: #29313a !important; border-color: var(--ag-border) !important; }
+body .v-theme--dark .permission-dialog .profile-avatar { background: transparent !important; color: var(--ag-accent) !important; border: 1px solid var(--ag-border); }
+body .v-theme--dark .permission-dialog .permission-item { background: #252d36 !important; border-color: var(--ag-border) !important; }
+body .v-theme--dark .permission-dialog .permission-item strong { color: var(--ag-title) !important; }
+body .v-theme--dark .permission-dialog .permission-item span { color: var(--ag-muted) !important; }
+body .v-theme--dark .permission-dialog .permission-item > .v-icon { color: #76c99a !important; }
+body .v-theme--dark .permission-dialog .no-permissions { background: #252d36 !important; border-color: var(--ag-border) !important; color: var(--ag-muted) !important; }
+
+/* Acciones coherentes: guardar sólido; cancelar/cerrar discreto y rojo sólo al interactuar. */
+body .v-theme--dark .v-btn.bg-primary,
+body .v-theme--dark .v-btn--variant-flat.bg-primary { background: #3563e9 !important; color: #fff !important; }
+body .v-theme--dark .v-btn.bg-primary:hover:not(.v-btn--disabled),
+body .v-theme--dark .v-btn--variant-flat.bg-primary:hover:not(.v-btn--disabled) { background: #254fc9 !important; }
+body .v-theme--dark .v-btn.bg-primary .v-icon,
+body .v-theme--dark .v-btn--variant-flat.bg-primary .v-icon { color: #fff !important; }
+body .v-theme--dark .v-btn.bg-primary:focus-visible,
+body .v-theme--dark .v-btn--variant-flat.bg-primary:focus-visible { outline: 2px solid #b7caff; outline-offset: 2px; }
+body .v-theme--dark .v-dialog .v-card-actions .v-btn:not(.bg-primary):not(.bg-error),
+body .v-theme--dark .permission-dialog .v-btn--variant-outlined { color: var(--ag-text) !important; border-color: var(--ag-border) !important; transition: background-color .18s ease, border-color .18s ease, color .18s ease; }
+body .v-theme--dark .v-dialog .v-btn--icon { background: transparent !important; color: var(--ag-text) !important; }
+body .v-dialog .v-btn--icon.v-theme--dark { background: transparent !important; color: var(--ag-text) !important; }
+body .v-theme--dark .v-dialog .v-card-actions .v-btn:not(.bg-primary):not(.bg-error):hover:not(.v-btn--disabled),
+body .v-theme--dark .permission-dialog .v-btn--variant-outlined:hover:not(.v-btn--disabled),
+body .v-theme--dark .v-dialog .v-btn--icon:hover:not(.v-btn--disabled) { background: rgba(196, 69, 69, .16) !important; border-color: rgba(255, 137, 137, .5) !important; color: #ffb4b4 !important; }
+body .v-theme--dark .v-dialog .v-btn--icon:hover:not(.v-btn--disabled) .v-icon { color: #ffb4b4 !important; }
+body .v-theme--dark .v-overlay__scrim { background: #05070a !important; opacity: .72 !important; }
+
+/* Modal de actualización de vehículo: superficies oscuras coherentes, sin tarjetas blancas. */
+.v-overlay.vehicle-edit-dialog .v-overlay__content {
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+.v-overlay__content.vehicle-edit-overlay-content {
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+.v-overlay__content.vehicle-edit-overlay-content > .vehicle-edit {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  overflow: hidden !important;
+}
+.v-overlay.vehicle-edit-dialog .vehicle-edit { width: min(840px, calc(100vw - 48px)); }
+@media (max-width: 600px) {
+  .v-overlay.vehicle-edit-dialog .vehicle-edit { width: calc(100vw - 24px); }
+}
+.v-overlay__content .vehicle-edit.dialog-card::before { display: none !important; }
+body .v-theme--dark .vehicle-edit__header,
+body .v-theme--dark .vehicle-edit .edit-actions { background: #20262e !important; border-color: var(--ag-border) !important; }
+body .v-theme--dark .vehicle-edit__heading h2,
+body .v-theme--dark .vehicle-edit .edit-section-heading h3,
+body .v-theme--dark .vehicle-edit .association-card strong,
+body .v-theme--dark .vehicle-edit .vin-panel__value strong { color: var(--ag-title) !important; }
+body .v-theme--dark .vehicle-edit__heading p,
+body .v-theme--dark .vehicle-edit .association-card span,
+body .v-theme--dark .vehicle-edit .vin-panel__value span,
+body .v-theme--dark .vehicle-edit .vin-note,
+body .v-theme--dark .vehicle-edit .additional-data > p { color: var(--ag-muted) !important; }
+body .v-theme--dark .vehicle-edit .linked-info,
+body .v-theme--dark .vehicle-edit .vehicle-data { background: #252d36 !important; border-color: var(--ag-border) !important; }
+body .v-theme--dark .vehicle-edit .association-card { background: #29313a !important; border-color: var(--ag-border) !important; }
+body .v-theme--dark .vehicle-edit .vin-panel { background: #302d26 !important; border-color: #5c5139 !important; color: #e1b66e !important; }
+body .v-theme--dark .vehicle-edit .vin-lock,
+body .v-theme--dark .vehicle-edit .required-chip { background: #493b24 !important; color: #f0c982 !important; }
+body .v-theme--dark .vehicle-edit .edit-header-icon { background: #493b24 !important; color: var(--ag-accent) !important; }
+body .v-theme--dark .vehicle-edit .edit-fields .v-field { background: var(--ag-field) !important; }
+body .v-theme--dark .vehicle-edit .additional-data,
+body .v-theme--dark .vehicle-edit .edit-photos { border-color: var(--ag-border) !important; }
+body .v-theme--dark .vehicle-edit .add-photo-card { background:#29313a !important; border-color:#5575ac !important; color:#8daeff !important; }
+body .v-theme--dark .vehicle-edit .add-photo-card small { color:#aab8c9 !important; }
+body .v-theme--dark .vehicle-edit .vehicle-photo-card { background:#29313a !important; border-color:#5575ac !important; }
+body .v-theme--dark .vehicle-edit .photo-principal { background:rgba(20,45,80,.85) !important; color:#fff !important; }
+body .v-theme--dark .vehicle-edit .edit-save-button { background: #2850e8 !important; color: #fff !important; }
+body .v-theme--dark .vehicle-edit .edit-save-button:hover:not(.v-btn--disabled) { background: #1f42c7 !important; }
+body .v-theme--dark .vehicle-edit .edit-cancel-button { border-color: var(--ag-border) !important; color: var(--ag-text) !important; }
+
+/* Vuetify teletransporta los diálogos fuera del árbol del tema; por ello el
+   tema también se declara en la tarjeta raíz, no sólo en descendientes. */
+.v-theme--dark.vehicle-edit { background: #20262e !important; color: #d5dee9 !important; border-color: #3a4654 !important; }
+.v-theme--dark.vehicle-edit .vehicle-edit__header,
+.v-theme--dark.vehicle-edit .edit-actions { background: #20262e !important; border-color: #3a4654 !important; }
+.v-theme--dark.vehicle-edit .vehicle-edit__heading h2,
+.v-theme--dark.vehicle-edit .edit-section-heading h3,
+.v-theme--dark.vehicle-edit .association-card strong,
+.v-theme--dark.vehicle-edit .vin-panel__value strong { color: #f1f5f9 !important; }
+.v-theme--dark.vehicle-edit .vehicle-edit__heading p,
+.v-theme--dark.vehicle-edit .association-card span,
+.v-theme--dark.vehicle-edit .vin-panel__value span,
+.v-theme--dark.vehicle-edit .vin-note,
+.v-theme--dark.vehicle-edit .additional-data > p { color: #aab8c9 !important; }
+.v-theme--dark.vehicle-edit .linked-info,
+.v-theme--dark.vehicle-edit .vehicle-data { background: #252d36 !important; border-color: #3a4654 !important; }
+.v-theme--dark.vehicle-edit .association-card { background: #29313a !important; border-color: #3a4654 !important; }
+.v-theme--dark.vehicle-edit .vin-panel { background: #302d26 !important; border-color: #5c5139 !important; color: #e1b66e !important; }
+.v-theme--dark.vehicle-edit .vin-lock,
+.v-theme--dark.vehicle-edit .required-chip { background: #493b24 !important; color: #f0c982 !important; }
+.v-theme--dark.vehicle-edit .edit-header-icon { background: #493b24 !important; color: #8daeff !important; }
+.v-theme--dark.vehicle-edit .edit-fields .v-field { background: #30363d !important; }
+.v-theme--dark.vehicle-edit .edit-fields .v-field__overlay { background: transparent !important; opacity: 0 !important; }
+.v-theme--dark.vehicle-edit .edit-fields .v-field input,
+.v-theme--dark.vehicle-edit .edit-fields .v-label { color: #d5dee9 !important; }
+.v-theme--dark.vehicle-edit .additional-data,
+.v-theme--dark.vehicle-edit .edit-photos { border-color: #3a4654 !important; }
+.v-theme--dark.vehicle-edit .add-photo-card { background:#29313a !important; border-color:#5575ac !important; color:#8daeff !important; }
+.v-theme--dark.vehicle-edit .add-photo-card small { color:#aab8c9 !important; }
+.v-theme--dark.vehicle-edit .vehicle-photo-card { background:#29313a !important; border-color:#5575ac !important; }
+.v-theme--dark.vehicle-edit .photo-principal { background:rgba(20,45,80,.85) !important; color:#fff !important; }
+.v-theme--dark.vehicle-edit .edit-save-button { background: #2850e8 !important; color: #fff !important; }
+.v-theme--dark.vehicle-edit .edit-save-button:hover:not(.v-btn--disabled) { background: #1f42c7 !important; }
+.v-theme--dark.vehicle-edit .edit-cancel-button { background: transparent !important; border-color: #3a4654 !important; color: #d5dee9 !important; }
+
+/* Estándar visual de diálogos AutoGestión. Las clases existentes se conservan
+   para no acoplar la apariencia a la lógica de cada módulo. */
+:root {
+  --ag-modal-navy: #142b50;
+  --ag-modal-primary: #2850e8;
+  --ag-modal-gold: #dda34e;
+  --ag-modal-gold-soft: #f8e9ce;
+  --ag-modal-blue-soft: #eef3fc;
+  --ag-modal-muted: #64748b;
+  --ag-modal-border: #dbe3ee;
+  --ag-modal-success: #237e18;
+}
+.v-overlay__content .dialog-card,
+.v-overlay__content .permission-dialog,
+.v-overlay__content .standard-dialog {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--ag-modal-border) !important;
+  border-radius: 16px !important;
+  background: #fff !important;
+  box-shadow: 0 18px 42px rgba(20, 43, 80, .16) !important;
+}
+.v-overlay__content .dialog-card::before,
+.v-overlay__content .permission-dialog::before,
+.v-overlay__content .standard-dialog::before {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  content: '';
+  background: var(--ag-modal-gold);
+}
+.v-overlay__content .dialog-heading,
+.v-overlay__content .permission-dialog__header,
+.v-overlay__content .details-hero,
+.v-overlay__content .modal-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 24px 28px 20px !important;
+  border-bottom: 1px solid #e6ebf1 !important;
+  background: #fff !important;
+}
+.v-overlay__content .dialog-heading::after,
+.v-overlay__content .permission-dialog__header::after,
+.v-overlay__content .modal-header::after {
+  width: 3px;
+  min-width: 3px;
+  align-self: stretch;
+  order: 1;
+  border-radius: 999px;
+  content: '';
+  background: var(--ag-modal-gold);
+}
+.v-overlay__content .dialog-heading > .header-icon,
+.v-overlay__content .modal-header__icon {
+  display: grid !important;
+  width: 44px !important;
+  height: 44px !important;
+  place-items: center;
+  flex: none;
+  order: 0;
+  border-radius: 12px !important;
+  background: var(--ag-modal-gold-soft) !important;
+  color: var(--ag-modal-primary) !important;
+  box-shadow: none !important;
+}
+.v-overlay__content .dialog-heading > div:not(.header-icon),
+.v-overlay__content .modal-header__copy { order: 2; min-width: 0; }
+.v-overlay__content .dialog-heading h2,
+.v-overlay__content .permission-dialog h2,
+.v-overlay__content .details-hero h2,
+.v-overlay__content .modal-header h2,
+.v-overlay__content .dialog-card > h2 { color: var(--ag-modal-navy) !important; font-weight: 800; }
+.v-overlay__content .dialog-heading p,
+.v-overlay__content .permission-dialog__header p,
+.v-overlay__content .details-hero p,
+.v-overlay__content .modal-header p,
+.v-overlay__content .dialog-card > p { color: var(--ag-modal-muted) !important; }
+.v-overlay__content .dialog-card > .v-card-text,
+.v-overlay__content .permission-dialog > .v-card-text,
+.v-overlay__content .standard-dialog > .v-card-text { padding: 22px 28px 14px; }
+.v-overlay__content .dialog-card .v-field { min-height:44px; border-radius:10px; }
+.v-overlay__content .dialog-card .v-field__outline__start,
+.v-overlay__content .dialog-card .v-field__outline__notch::before,
+.v-overlay__content .dialog-card .v-field__outline__notch::after,
+.v-overlay__content .dialog-card .v-field__outline__end { border-color: #c8d3e1 !important; }
+.v-overlay__content .dialog-card .v-field--focused .v-field__outline__start,
+.v-overlay__content .dialog-card .v-field--focused .v-field__outline__notch::before,
+.v-overlay__content .dialog-card .v-field--focused .v-field__outline__notch::after,
+.v-overlay__content .dialog-card .v-field--focused .v-field__outline__end { border-color: var(--ag-modal-primary) !important; }
+.v-overlay__content .dialog-card > .v-card-actions,
+.v-overlay__content .permission-dialog > .v-card-actions,
+.v-overlay__content .standard-dialog > .v-card-actions {
+  min-height: 76px;
+  padding: 16px 28px 20px !important;
+  border-top: 1px solid #e6ebf1;
+  background: #fff;
+}
+.v-overlay__content .v-card-actions .v-btn { min-height: 42px; border-radius: 10px; font-weight: 700; text-transform: none; }
+.v-overlay__content .v-card-actions .v-btn.bg-primary,
+.v-overlay__content .v-card-actions .v-btn--variant-flat.bg-primary { background: var(--ag-modal-primary) !important; color: #fff !important; }
+.v-overlay__content .v-card-actions .v-btn.bg-primary:hover:not(.v-btn--disabled),
+.v-overlay__content .v-card-actions .v-btn--variant-flat.bg-primary:hover:not(.v-btn--disabled) { background: #1e40c9 !important; }
+.v-overlay__content .v-card-actions .v-btn:not(.bg-primary):not(.bg-error):hover:not(.v-btn--disabled),
+.v-overlay__content .modal-close-button:hover:not(.v-btn--disabled) { border-color: #dc3545 !important; background: rgba(220, 53, 69, .10) !important; color: #dc3545 !important; }
+.v-overlay__content .v-card-actions .v-btn .v-icon,
+.v-overlay__content .modal-close-button .v-icon { background: transparent !important; box-shadow: none !important; }
+.v-overlay__content .permission-item > .v-icon,
+.v-overlay__content .v-icon.text-success { color: var(--ag-modal-success) !important; }
+.v-overlay__content .modal-close-button { margin-left: auto; color: #64748b; border-radius: 9px; }
+
+/* El contenido central es el único que se desplaza en los diálogos largos. */
+.v-overlay__content .dialog-card.v-card--density-default,
+.v-overlay__content .permission-dialog { max-height: min(840px, calc(100dvh - 48px)); }
+
+/* Variante oscura: se declara sobre el elemento teletransportado para no
+   depender de la herencia del árbol de la vista. */
+.v-overlay__content .v-theme--dark.dialog-card,
+.v-overlay__content .v-theme--dark.permission-dialog,
+.v-overlay__content .v-theme--dark.standard-dialog { background: #20262e !important; border-color: #3a4654 !important; color: #d5dee9 !important; }
+.v-overlay__content .v-theme--dark.dialog-card > .v-card-actions,
+.v-overlay__content .v-theme--dark.permission-dialog > .v-card-actions,
+.v-overlay__content .v-theme--dark.standard-dialog > .v-card-actions,
+.v-overlay__content .v-theme--dark .dialog-heading,
+.v-overlay__content .v-theme--dark .permission-dialog__header,
+.v-overlay__content .v-theme--dark .details-hero,
+.v-overlay__content .v-theme--dark .modal-header { background: #20262e !important; border-color: #3a4654 !important; }
+.v-overlay__content .v-theme--dark .dialog-heading h2,
+.v-overlay__content .v-theme--dark .permission-dialog h2,
+.v-overlay__content .v-theme--dark .details-hero h2,
+.v-overlay__content .v-theme--dark .modal-header h2,
+.v-overlay__content .v-theme--dark.dialog-card > h2 { color: #f1f5f9 !important; }
+.v-overlay__content .v-theme--dark .dialog-heading p,
+.v-overlay__content .v-theme--dark .permission-dialog__header p,
+.v-overlay__content .v-theme--dark .details-hero p,
+.v-overlay__content .v-theme--dark .modal-header p,
+.v-overlay__content .v-theme--dark.dialog-card > p { color: #aab8c9 !important; }
+.v-overlay__content .v-theme--dark .profile-summary,
+.v-overlay__content .v-theme--dark .permission-item,
+.v-overlay__content .v-theme--dark .info-card,
+.v-overlay__content .v-theme--dark .address-card,
+.v-overlay__content .v-theme--dark .owner-card,
+.v-overlay__content .v-theme--dark .spec-grid > div { background: #29313a !important; border-color: #3a4654 !important; }
+.v-overlay__content .v-theme--dark .v-field { background: #30363d !important; }
+.v-overlay__content .v-theme--dark .v-field__outline__start,
+.v-overlay__content .v-theme--dark .v-field__outline__notch::before,
+.v-overlay__content .v-theme--dark .v-field__outline__notch::after,
+.v-overlay__content .v-theme--dark .v-field__outline__end { border-color: #4b5969 !important; }
+@media (max-width: 600px) {
+  .v-overlay__content .dialog-heading,
+  .v-overlay__content .permission-dialog__header,
+  .v-overlay__content .details-hero,
+  .v-overlay__content .modal-header,
+  .v-overlay__content .dialog-card > .v-card-text,
+  .v-overlay__content .permission-dialog > .v-card-text,
+  .v-overlay__content .dialog-card > .v-card-actions,
+  .v-overlay__content .permission-dialog > .v-card-actions { padding-right:18px !important; padding-left:18px !important; }
+  .v-overlay__content .v-card-actions { flex-wrap:wrap; }
+  .v-overlay__content .v-card-actions .v-spacer { display:none; }
+  .v-overlay__content .v-card-actions .v-btn { flex:1 1 100%; }
+}
+
+/* Encabezado del perfil de acceso: esta variante se mantiene global para que
+   el selector de tema no se compile como una regla aplicada a toda la app. */
+.v-theme--dark .permission-dialog::before { display: none; }
+.v-theme--dark .permission-dialog__header { background: #20262e !important; border-bottom-color: #3a4654 !important; }
+.v-theme--dark .permission-dialog__icon { background: #493b24 !important; color: #f0c982 !important; }
+.v-theme--dark .permission-dialog__divider { background: #dda34e !important; }
+.v-theme--dark .permission-dialog__copy .section-kicker { color: #8daeff !important; }
+.v-theme--dark .permission-dialog__copy h2 { color: #f1f5f9 !important; }
+.v-theme--dark .permission-dialog__copy > p:last-child { color: #aab8c9 !important; }
+
+/* Ficha del taller: contraste específico sin alterar las otras pantallas. */
+.v-theme--dark .workshop-details { max-height: min(820px, calc(100dvh - 44px)); background: #20262e !important; }
+.v-theme--dark .workshop-details__header,
+.v-theme--dark .workshop-details__actions { background: #20262e !important; border-color: #3a4654 !important; }
+.v-theme--dark .workshop-details__icon,
+.v-theme--dark .workshop-section-title__icon { background: #493b24 !important; color: #f0c982 !important; }
+.v-theme--dark .workshop-details__header h2,
+.v-theme--dark .workshop-details .section-title h3,
+.v-theme--dark .workshop-details .info-card strong,
+.v-theme--dark .workshop-details .address-card strong,
+.v-theme--dark .operational-status strong,
+.v-theme--dark .registration-date strong { color: #f1f5f9 !important; }
+.v-theme--dark .workshop-rfc,
+.v-theme--dark .workshop-details .section-title p,
+.v-theme--dark .workshop-details .info-card span,
+.v-theme--dark .workshop-details .address-card span,
+.v-theme--dark .operational-status span,
+.v-theme--dark .registration-date span { color: #aab8c9 !important; }
+.v-theme--dark .workshop-details .info-card,
+.v-theme--dark .workshop-details .address-card,
+.v-theme--dark .registration-date { background: #29313a !important; border-color: #3a4654 !important; }
+.v-theme--dark .operational-status--active { background: #203650 !important; border-color: #365a82 !important; }
+.v-theme--dark .operational-status--active strong,
+.v-theme--dark .operational-status--active .v-icon { color: #8daeff !important; }
+.v-theme--dark .operational-status--inactive { background: #302d26 !important; border-color: #5c5139 !important; }
+.v-theme--dark .operational-status--inactive strong,
+.v-theme--dark .operational-status--inactive .v-icon { color: #f0c982 !important; }
+.v-theme--dark .postal-band { background: #493b24 !important; color: #f0c982 !important; }
+.v-theme--dark .workshop-close-button { border-color: #3a4654 !important; color: #d5dee9 !important; }
+
+/* Ficha del taller: variante final que supera el estándar genérico de diálogos.
+   El overlay de Vuetify se teletransporta fuera de la vista, por ello estas reglas
+   viven junto al tema compartido y no dependen del estilo scoped del componente. */
+.v-overlay__content .workshop-details::before { display: none !important; }
+.v-overlay__content .workshop-details { display:flex !important; flex-direction:column !important; max-height:min(820px,calc(100dvh - 44px)) !important; overflow:hidden !important; }
+.v-overlay__content .workshop-details__header { display:flex !important; align-items:center !important; gap:14px !important; flex:none !important; padding:22px 28px 18px !important; border-bottom:1px solid #dfe7f2 !important; background:#f8faff !important; }
+.v-overlay__content .workshop-details__icon,.v-overlay__content .workshop-section-title__icon { display:grid !important; place-items:center !important; flex:none !important; border-radius:13px !important; background:#f8e9ce !important; color:#dda34e !important; }.v-overlay__content .workshop-details__icon{width:54px !important;height:54px !important}.v-overlay__content .workshop-section-title__icon{width:37px !important;height:37px !important;border-radius:50% !important}
+.v-overlay__content .workshop-details__divider { align-self:stretch !important; width:3px !important; min-width:3px !important; border-radius:99px !important; background:#dda34e !important; }.v-overlay__content .workshop-details__header .eyebrow{margin:0 0 4px !important;color:#2850e8 !important}.v-overlay__content .workshop-details__header h2{margin:0 !important;color:#142b50 !important;font-size:1.34rem !important;font-weight:800 !important;line-height:1.2 !important}.v-overlay__content .workshop-rfc{display:flex !important;align-items:center !important;gap:5px !important;margin:5px 0 0 !important;color:#64748b !important;font-size:.82rem !important}
+.v-overlay__content .workshop-details__close { margin-left:auto !important; color:#64748b !important; border-radius:9px !important; }.v-overlay__content .workshop-details__close:hover { background:rgba(220,53,69,.1) !important; color:#dc3545 !important; }
+.v-overlay__content .workshop-details .details-content{flex:1 1 auto !important;overflow-y:auto !important;padding:24px 28px 14px !important}.v-overlay__content .workshop-details .details-grid{display:grid !important;grid-template-columns:minmax(260px,.82fr) minmax(330px,1.18fr) !important;gap:22px !important}.v-overlay__content .workshop-details .workshop-photo,.v-overlay__content .workshop-details .no-photo{height:380px !important;border-radius:14px !important}.v-overlay__content .workshop-details .no-photo{background:#eef3fc !important;border-color:#d9e4f4 !important}
+.v-overlay__content .workshop-details .workshop-section-title{display:flex !important;align-items:flex-start !important;gap:11px !important;margin-bottom:12px !important}.v-overlay__content .workshop-details .section-title h3{color:#142b50 !important;font-size:1.06rem !important}.v-overlay__content .workshop-details .section-title p{color:#64748b !important}.v-overlay__content .workshop-details .info-card,.v-overlay__content .workshop-details .address-card{border:0 !important;border-radius:13px !important;background:#eef3fc !important}.v-overlay__content .workshop-details .info-card{padding:14px 16px !important}.v-overlay__content .workshop-details .address-card{padding:14px 16px !important}.v-overlay__content .workshop-details .info-card strong,.v-overlay__content .workshop-details .address-card strong{color:#142b50 !important}.v-overlay__content .workshop-details .info-card strong>.v-icon{color:#2850e8 !important}.v-overlay__content .workshop-details .address-card strong{font-size:.98rem !important}.v-overlay__content .workshop-details .info-card span,.v-overlay__content .workshop-details .address-card span{color:#64748b !important}.v-overlay__content .postal-band{display:flex !important;align-items:center !important;gap:6px !important;margin-top:11px !important;padding:5px 10px !important;border-radius:999px !important;background:#f8e9ce !important;color:#9a6419 !important;font-size:.79rem !important;font-weight:800 !important}.v-overlay__content .postal-band>.v-icon{color:#b47a22 !important}
+.v-overlay__content .workshop-details .status-row{display:grid !important;grid-template-columns:1fr 1fr !important;gap:12px !important;margin-top:14px !important}.v-overlay__content .operational-status,.v-overlay__content .registration-date{min-height:76px !important;padding:13px 15px !important;border:1px solid transparent !important;border-radius:13px !important}.v-overlay__content .operational-status span,.v-overlay__content .registration-date span{color:#64748b !important;font-size:.74rem !important;font-weight:800 !important}.v-overlay__content .operational-status strong,.v-overlay__content .registration-date strong{display:flex !important;align-items:center !important;gap:8px !important;margin-top:7px !important;color:#142b50 !important;font-size:.92rem !important}.v-overlay__content .operational-status--active{background:#e6f1ff !important;border-color:#cde0f8 !important}.v-overlay__content .operational-status--active strong,.v-overlay__content .operational-status--active .v-icon{color:#2850e8 !important}.v-overlay__content .operational-status--inactive{background:#f8e9ce !important;border-color:#efcf9b !important}.v-overlay__content .operational-status--inactive strong,.v-overlay__content .operational-status--inactive .v-icon{color:#9a6419 !important}.v-overlay__content .registration-date{background:#eef3fc !important;border-color:#dbe6f5 !important}.v-overlay__content .registration-date span{display:flex !important;align-items:center !important;gap:6px !important}.v-overlay__content .registration-date span>.v-icon{color:#dda34e !important}
+.v-overlay__content .workshop-details__actions{flex:none !important;padding:16px 28px 20px !important;border-top:1px solid #dfe7f2 !important;background:#f8faff !important}.v-overlay__content .workshop-close-button{min-width:160px !important;border-color:#cbd5e1 !important;color:#536276 !important}.v-overlay__content .workshop-close-button:hover{background:rgba(220,53,69,.1) !important;border-color:#dc3545 !important;color:#dc3545 !important}
+@media(max-width:850px){.v-overlay__content .workshop-details .details-grid{grid-template-columns:1fr !important}.v-overlay__content .workshop-details .workshop-photo,.v-overlay__content .workshop-details .no-photo{height:280px !important}}@media(max-width:560px){.v-overlay__content .workshop-details{max-height:calc(100dvh - 20px) !important}.v-overlay__content .workshop-details__header,.v-overlay__content .workshop-details .details-content,.v-overlay__content .workshop-details__actions{padding-right:18px !important;padding-left:18px !important}.v-overlay__content .workshop-details__header{align-items:flex-start !important}.v-overlay__content .workshop-details__icon{width:46px !important;height:46px !important}.v-overlay__content .workshop-details__header h2{font-size:1.1rem !important}.v-overlay__content .workshop-details__actions .v-spacer{display:none !important}.v-overlay__content .workshop-close-button{width:100% !important}}
+
+.v-overlay__content .v-theme--dark.workshop-details{background:#20262e !important;border-color:#3a4654 !important}.v-overlay__content .v-theme--dark .workshop-details__header,.v-overlay__content .v-theme--dark .workshop-details__actions{background:#20262e !important;border-color:#3a4654 !important}.v-overlay__content .v-theme--dark .workshop-details__icon,.v-overlay__content .v-theme--dark .workshop-section-title__icon{background:#493b24 !important;color:#f0c982 !important}.v-overlay__content .v-theme--dark .workshop-details__header h2,.v-overlay__content .v-theme--dark .workshop-details .section-title h3,.v-overlay__content .v-theme--dark .workshop-details .info-card strong,.v-overlay__content .v-theme--dark .workshop-details .address-card strong,.v-overlay__content .v-theme--dark .operational-status strong,.v-overlay__content .v-theme--dark .registration-date strong{color:#f1f5f9 !important}.v-overlay__content .v-theme--dark .workshop-rfc,.v-overlay__content .v-theme--dark .workshop-details .section-title p,.v-overlay__content .v-theme--dark .workshop-details .info-card span,.v-overlay__content .v-theme--dark .workshop-details .address-card span,.v-overlay__content .v-theme--dark .operational-status span,.v-overlay__content .v-theme--dark .registration-date span{color:#aab8c9 !important}.v-overlay__content .v-theme--dark .workshop-details .info-card,.v-overlay__content .v-theme--dark .workshop-details .address-card,.v-overlay__content .v-theme--dark .registration-date{background:#29313a !important;border-color:#3a4654 !important}.v-overlay__content .v-theme--dark .operational-status--active{background:#203650 !important;border-color:#365a82 !important}.v-overlay__content .v-theme--dark .operational-status--active strong,.v-overlay__content .v-theme--dark .operational-status--active .v-icon{color:#8daeff !important}.v-overlay__content .v-theme--dark .operational-status--inactive{background:#302d26 !important;border-color:#5c5139 !important}.v-overlay__content .v-theme--dark .operational-status--inactive strong,.v-overlay__content .v-theme--dark .operational-status--inactive .v-icon{color:#f0c982 !important}.v-overlay__content .v-theme--dark .postal-band{background:#493b24 !important;color:#f0c982 !important}.v-overlay__content .v-theme--dark .workshop-close-button{border-color:#3a4654 !important;color:#d5dee9 !important}
+.v-overlay__content .workshop-details .status-row .operational-status--active { background:#e6f1ff !important; border-color:#cde0f8 !important; }.v-overlay__content .workshop-details .status-row .operational-status--active strong,.v-overlay__content .workshop-details .status-row .operational-status--active .v-icon { color:#2850e8 !important; background:transparent !important; }.v-overlay__content .workshop-details .status-row .operational-status--inactive { background:#f8e9ce !important; border-color:#efcf9b !important; }.v-overlay__content .workshop-details .status-row .operational-status--inactive strong,.v-overlay__content .workshop-details .status-row .operational-status--inactive .v-icon { color:#9a6419 !important; background:transparent !important; }
+.v-overlay__content .v-theme--dark .workshop-details .status-row .operational-status--active { background:#203650 !important; border-color:#365a82 !important; }.v-overlay__content .v-theme--dark .workshop-details .status-row .operational-status--active strong,.v-overlay__content .v-theme--dark .workshop-details .status-row .operational-status--active .v-icon { color:#8daeff !important; }.v-overlay__content .v-theme--dark .workshop-details .status-row .operational-status--inactive { background:#302d26 !important; border-color:#5c5139 !important; }.v-overlay__content .v-theme--dark .workshop-details .status-row .operational-status--inactive strong,.v-overlay__content .v-theme--dark .workshop-details .status-row .operational-status--inactive .v-icon { color:#f0c982 !important; }
+.v-overlay__content .v-theme--dark.workshop-details .workshop-details__header,.v-overlay__content .v-theme--dark.workshop-details .workshop-details__actions{background:#20262e !important;border-color:#3a4654 !important}.v-overlay__content .v-theme--dark.workshop-details .workshop-details__icon,.v-overlay__content .v-theme--dark.workshop-details .workshop-section-title__icon{background:#493b24 !important;color:#f0c982 !important}.v-overlay__content .v-theme--dark.workshop-details .workshop-details__header h2,.v-overlay__content .v-theme--dark.workshop-details .section-title h3,.v-overlay__content .v-theme--dark.workshop-details .info-card strong,.v-overlay__content .v-theme--dark.workshop-details .address-card strong,.v-overlay__content .v-theme--dark.workshop-details .operational-status strong,.v-overlay__content .v-theme--dark.workshop-details .registration-date strong{color:#f1f5f9 !important}.v-overlay__content .v-theme--dark.workshop-details .workshop-rfc,.v-overlay__content .v-theme--dark.workshop-details .section-title p,.v-overlay__content .v-theme--dark.workshop-details .info-card span,.v-overlay__content .v-theme--dark.workshop-details .address-card span,.v-overlay__content .v-theme--dark.workshop-details .operational-status span,.v-overlay__content .v-theme--dark.workshop-details .registration-date span{color:#aab8c9 !important}.v-overlay__content .v-theme--dark.workshop-details .info-card,.v-overlay__content .v-theme--dark.workshop-details .address-card,.v-overlay__content .v-theme--dark.workshop-details .registration-date{background:#29313a !important;border-color:#3a4654 !important}.v-overlay__content .v-theme--dark.workshop-details .operational-status--active{background:#203650 !important;border-color:#365a82 !important}.v-overlay__content .v-theme--dark.workshop-details .operational-status--active strong,.v-overlay__content .v-theme--dark.workshop-details .operational-status--active .v-icon{color:#8daeff !important}.v-overlay__content .v-theme--dark.workshop-details .operational-status--inactive{background:#302d26 !important;border-color:#5c5139 !important}.v-overlay__content .v-theme--dark.workshop-details .operational-status--inactive strong,.v-overlay__content .v-theme--dark.workshop-details .operational-status--inactive .v-icon{color:#f0c982 !important}.v-overlay__content .v-theme--dark.workshop-details .postal-band{background:#493b24 !important;color:#f0c982 !important}.v-overlay__content .v-theme--dark.workshop-details .workshop-close-button{border-color:#3a4654 !important;color:#d5dee9 !important}
+.v-overlay__content .workshop-details .workshop-close-button { background:transparent !important; }.v-overlay__content .workshop-details .workshop-close-button:hover { background:rgba(220,53,69,.1) !important; }
+
+/* Edición de talleres: retícula contenida, pie fijo y superficie coherente con el diálogo estándar. */
+.workshops-admin .table-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.workshop-edit-launcher,.workshop-save-button { background:#2850e8 !important; color:#fff !important; border-radius:10px !important; }
+.workshop-save-button{transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease}.workshop-save-button:hover:not(.v-btn--disabled),.workshop-save-button:focus-visible:not(.v-btn--disabled),.workshop-save-button:active:not(.v-btn--disabled),.workshop-save-button.v-btn--active:not(.v-btn--disabled){background:#142b50!important;color:#fff!important;box-shadow:0 8px 18px rgba(20,43,80,.28);transform:translateY(-1px)}.workshop-save-button:active:not(.v-btn--disabled){background:#0f203d!important}.workshop-save-button:hover .v-icon,.workshop-save-button:focus-visible .v-icon,.workshop-save-button:active .v-icon{color:#fff!important}.workshop-success .v-snackbar__wrapper,.workshop-edit-success-snackbar .v-snackbar__wrapper{background:#237e18!important;color:#fff!important;font-weight:700}.workshop-edit-success-snackbar .v-snackbar__wrapper{border:1px solid rgba(142,211,150,.65);box-shadow:0 10px 24px rgba(15,55,20,.2)}
+.customer-register-success .v-snackbar__wrapper{border:1px solid rgba(35,126,24,.18);background:rgba(234,247,234,.96)!important;box-shadow:0 10px 24px rgba(25,83,31,.14);color:#237e18!important;font-weight:700}.customer-register-success .v-icon{color:#237e18!important}
+body .v-theme--dark .customer-register-page .card-icon{background:#493b24!important;color:#8daeff!important}body .v-theme--dark .customer-register-page .header-icon{background:#263a60!important;color:#8daeff!important}
+.v-overlay__content .workshop-edit-dialog .v-card-actions .workshop-save-button:hover:not(.v-btn--disabled),.v-overlay__content .workshop-edit-dialog .v-card-actions .workshop-save-button:focus-visible:not(.v-btn--disabled),.v-overlay__content .workshop-edit-dialog .v-card-actions .workshop-save-button:active:not(.v-btn--disabled){background:#142b50!important;border-color:#142b50!important;color:#fff!important}.v-overlay__content .workshop-edit-dialog .v-card-actions .workshop-save-button:active:not(.v-btn--disabled){background:#0f203d!important;border-color:#0f203d!important}.v-overlay__content .workshop-edit-dialog .v-card-actions .workshop-save-button:hover .v-icon,.v-overlay__content .workshop-edit-dialog .v-card-actions .workshop-save-button:focus-visible .v-icon,.v-overlay__content .workshop-edit-dialog .v-card-actions .workshop-save-button:active .v-icon{color:#fff!important}
+.v-overlay__content .workshop-edit-dialog { display:flex; flex-direction:column; max-height:min(840px,calc(100dvh - 48px)); overflow:hidden; }
+.v-overlay__content .workshop-edit-dialog::before{display:none!important}
+.v-overlay__content .workshop-edit-dialog__header { flex:none; }
+.v-overlay__content .workshop-edit-dialog__header > .header-icon { background:#f8e9ce !important; color:#2850e8 !important; }
+.v-overlay__content .workshop-edit-dialog__header::after { background:#dda34e !important; }
+.v-overlay__content .workshop-edit-dialog__header > .v-btn { order:3; margin-left:auto !important; color:#64748b; }
+.v-overlay__content .workshop-edit-dialog__content { flex:1 1 auto; overflow-y:auto; }
+.v-overlay__content .workshop-deactivate-dialog::before { display:none !important; }
+.v-overlay__content .workshop-deactivate-dialog__header { display:flex; align-items:center; gap:14px; padding:22px 26px 18px; border-bottom:1px solid #f1d9dc; background:#fff8f8; }
+.workshop-deactivate-dialog__header-icon { display:grid; width:44px; height:44px; place-items:center; flex:none; border-radius:12px; background:#fde6e8; color:#2850e8; }
+.workshop-deactivate-dialog__header h2 { margin:0; color:#142b50; font-size:1.15rem; font-weight:800; }.workshop-deactivate-dialog__header p { margin:3px 0 0; color:#64748b; font-size:.84rem; }
+.v-overlay__content .workshop-deactivate-dialog__content { display:flex; flex-direction:column; align-items:center; padding:24px 30px 20px; text-align:center; }.workshop-deactivate-dialog__warning { margin-bottom:12px; color:#dc3545; }.workshop-deactivate-dialog__content h3 { max-width:355px; margin:0; color:#142b50; font-size:1.14rem; line-height:1.4; }.workshop-deactivate-dialog__content h3 span { color:#dc3545; }.workshop-deactivate-dialog__content>p:not(.workshop-deactivate-dialog__helper) { margin:9px 0 0; color:#40516b; font-size:.88rem; }.workshop-deactivate-dialog__helper { max-width:370px; margin:13px 0 0; color:#64748b; font-size:.84rem; line-height:1.55; }
+.v-overlay__content .workshop-deactivate-dialog__actions { padding:16px 26px 22px; border-top:1px solid #edf0f4; }.workshop-deactivate-dialog__cancel { min-width:112px; border-color:#cbd5e1 !important; background:#fff !important; color:#475569 !important; }.workshop-deactivate-dialog__cancel:hover:not(.v-btn--disabled),.workshop-deactivate-dialog__cancel:focus-visible:not(.v-btn--disabled) { border-color:#334155 !important; background:#334155 !important; color:#fff !important; }.workshop-deactivate-dialog__confirm { min-width:126px; background:linear-gradient(135deg,#dc3545,#b91c2c) !important; color:#fff !important; box-shadow:0 7px 16px rgba(185,28,44,.22); }.workshop-deactivate-dialog__confirm:hover:not(.v-btn--disabled),.workshop-deactivate-dialog__confirm:focus-visible:not(.v-btn--disabled) { background:linear-gradient(135deg,#b91c2c,#8f1724) !important; color:#fff !important; }.workshop-deactivate-dialog__confirm .v-icon,.workshop-deactivate-dialog__cancel:hover .v-icon,.workshop-deactivate-dialog__cancel:focus-visible .v-icon { color:currentColor !important; }
+body .v-theme--dark .workshop-deactivate-dialog__header { border-color:#56383c; background:#2a2226; }body .v-theme--dark .workshop-deactivate-dialog__header-icon { background:#4a2d34; color:#8daeff; }body .v-theme--dark .workshop-deactivate-dialog__header h2,body .v-theme--dark .workshop-deactivate-dialog__content h3 { color:#f1f5f9; }body .v-theme--dark .workshop-deactivate-dialog__header p,body .v-theme--dark .workshop-deactivate-dialog__helper { color:#aab8c9; }body .v-theme--dark .workshop-deactivate-dialog__content>p:not(.workshop-deactivate-dialog__helper) { color:#d5dee9; }body .v-theme--dark .workshop-deactivate-dialog__actions { border-color:#3a4654; }body .v-theme--dark .workshop-deactivate-dialog__cancel { border-color:#536273 !important; background:#30363d !important; color:#d5dee9 !important; }body .v-theme--dark .workshop-deactivate-dialog__cancel:hover:not(.v-btn--disabled),body .v-theme--dark .workshop-deactivate-dialog__cancel:focus-visible:not(.v-btn--disabled) { border-color:#64748b !important; background:#475569 !important; color:#fff !important; }
+.workshop-edit-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 16px; }
+.workshop-edit-photo { margin-top:12px; padding:16px; border:1px solid #dbe6f5; border-radius:13px; background:#eef3fc; }.workshop-edit-photo>div:first-child strong,.workshop-edit-photo>div:first-child span{display:block}.workshop-edit-photo>div:first-child span{margin-top:3px;color:#64748b;font-size:.8rem}.workshop-edit-photo__media{position:relative;overflow:hidden;width:100%;height:176px;margin-top:12px;border-radius:12px;border:1px solid #dbe6f5}.workshop-edit-photo__preview{width:100%;height:100%}.workshop-edit-photo__overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;background:rgba(20,43,80,.68);opacity:0;transition:opacity .18s ease}.workshop-edit-photo__media:hover .workshop-edit-photo__overlay,.workshop-edit-photo__media:focus-within .workshop-edit-photo__overlay{opacity:1}.workshop-edit-photo__empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:100%;min-height:154px;margin-top:12px;border:1px dashed #9db4d2;border-radius:12px;background:#f8faff;color:#2850e8;cursor:pointer}.workshop-edit-photo__empty span{color:#64748b;font-size:.8rem}.v-overlay__content .workshop-edit-dialog__actions{flex:none}
+.v-theme--dark .workshop-edit-photo{background:#29313a;border-color:#3a4654}.v-theme--dark .workshop-edit-photo>div:first-child strong{color:#f1f5f9}.v-theme--dark .workshop-edit-photo>div:first-child span{color:#aab8c9}.v-theme--dark .workshop-edit-photo__media{border-color:#3a4654}.v-theme--dark .workshop-edit-photo__empty{border-color:#536b87;background:#20262e;color:#8daeff}.v-theme--dark .workshop-edit-photo__empty span{color:#aab8c9}
+.v-theme--dark .workshop-edit-dialog .v-input { background:transparent !important; }.v-overlay__content .workshop-edit-dialog .workshop-close-button { background:transparent !important; }
+.v-overlay__content .workshop-edit-date{display:flex;align-items:center;gap:16px;margin:6px 0 16px;padding:12px 16px;border-radius:13px;background:#f8e9ce;color:#9a6419}.v-overlay__content .workshop-edit-date>div{min-width:140px}.v-overlay__content .workshop-edit-date span,.v-overlay__content .workshop-edit-date strong{display:block}.v-overlay__content .workshop-edit-date span{font-size:.77rem;font-weight:700;color:#536276}.v-overlay__content .workshop-edit-date strong{color:#142b50}.v-overlay__content .workshop-edit-date .v-divider{height:34px;border-color:#e6c98f}.v-overlay__content .workshop-edit-date p{margin:0;color:#64748b;font-size:.82rem}.workshop-edit-address{padding-top:10px;border-top:1px solid #e4eaf2}.workshop-edit-section-title{display:flex;align-items:center;gap:12px;margin:0 0 8px}.workshop-edit-section-title>div:first-child{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#f8e9ce;color:#2850e8}.workshop-edit-section-title h3,.workshop-edit-section-title p{margin:0}.workshop-edit-section-title h3{color:#142b50;font-size:1.08rem}.workshop-edit-section-title p{color:#64748b;font-size:.82rem}.workshop-edit-section-title>span{margin-left:auto;padding:6px 10px;border-radius:999px;background:#f8e9ce;color:#9a6419;font-size:.72rem;font-weight:800}.workshop-edit-address .v-row{margin-top:0}.v-overlay__content .workshop-edit-dialog .workshop-close-button:hover{background:rgba(220,53,69,.1)!important;border-color:#dc3545!important;color:#dc3545!important}.v-overlay__content .workshop-edit-dialog .workshop-close-button:hover .v-icon{color:#dc3545!important}
+
+/* Actualizar cliente: las superficies internas siguen el tema oscuro del diálogo. */
+.v-overlay__content .customer-edit-dialog .customer-edit-section__title > span { background:#f8e9ce !important; color:#2850e8 !important; }
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-dialog__header { background:#26364d !important; border-color:#3a4654 !important; }
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-dialog__header h2,
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-section__title h3,
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-workshop strong { color:#f1f5f9 !important; }
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-dialog__header p,
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-section__title p,
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-workshop span,
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-workshop small { color:#aab8c9 !important; }
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-workshop { background:#29313a !important; border-color:#3a4654 !important; }
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-section { border-color:#3a4654 !important; }
+.v-overlay__content .v-theme--dark.customer-edit-dialog .customer-edit-dialog__actions { background:#20262e !important; border-color:#3a4654 !important; }
+
+/* Baja de clientes: variante oscura del diálogo de confirmación. */
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__header,
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__actions { background:#20262e !important; border-color:#3a4654 !important; }
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__header h2,
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__content h3 { color:#f1f5f9 !important; }
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__header p,
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__content p,
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__name { color:#aab8c9 !important; }
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__cancel { background:#29313a !important; border-color:#4a596a !important; color:#d5dee9 !important; }
+.v-overlay__content .v-theme--dark.customer-deactivate-dialog .customer-deactivate-dialog__cancel:hover { background:#334155 !important; color:#fff !important; }
+
+/* Baja de vehículos: variante oscura del diálogo de confirmación. */
+.v-overlay__content .vehicle-deactivate-dialog::before { display:none !important; }
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__header,
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__actions { background:#20262e !important; border-color:#3a4654 !important; }
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__header h2,
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__content h3 { color:#f1f5f9 !important; }
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__header p,
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__content p,
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__name,
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__name span { color:#aab8c9 !important; }
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__cancel { background:#29313a !important; border-color:#4a596a !important; color:#d5dee9 !important; }
+.v-overlay__content .v-theme--dark.vehicle-deactivate-dialog .vehicle-deactivate-dialog__cancel:hover { background:#334155 !important; color:#fff !important; }
+.v-overlay__content .workshop-edit-grid .workshop-edit-date { width:100%; margin:0; }
+.v-overlay__content .workshop-edit-grid .workshop-edit-date { box-sizing:border-box; min-height:48px; height:48px; margin-bottom:16px; padding:8px 12px; gap:10px; align-items:center; }.v-overlay__content .workshop-edit-grid .workshop-edit-date>.v-icon { flex:none; }.v-overlay__content .workshop-edit-grid .workshop-edit-date>div { min-width:112px; }.v-overlay__content .workshop-edit-grid .workshop-edit-date .v-divider { height:26px; }.v-overlay__content .workshop-edit-grid .workshop-edit-date span { font-size:.7rem; }.v-overlay__content .workshop-edit-grid .workshop-edit-date strong { font-size:.88rem; line-height:1.1; }.v-overlay__content .workshop-edit-grid .workshop-edit-date p { font-size:.76rem; line-height:1.2; }
+.v-theme--dark .workshop-edit-date{background:#493b24;color:#f0c982}.v-theme--dark .workshop-edit-date span,.v-theme--dark .workshop-edit-date p{color:#aab8c9}.v-theme--dark .workshop-edit-date strong,.v-theme--dark .workshop-edit-section-title h3{color:#f1f5f9}.v-theme--dark .workshop-edit-date .v-divider{border-color:#705c36}.v-theme--dark .workshop-edit-address{border-color:#3a4654}.v-theme--dark .workshop-edit-section-title>div:first-child{background:#493b24;color:#f0c982}.v-theme--dark .workshop-edit-section-title p{color:#aab8c9}.v-theme--dark .workshop-edit-section-title>span{background:#493b24;color:#f0c982}
+@media(max-width:640px){.v-overlay__content .workshop-edit-date{align-items:flex-start;flex-wrap:wrap}.v-overlay__content .workshop-edit-date .v-divider{display:none}.v-overlay__content .workshop-edit-date p{flex-basis:100%}.workshop-edit-section-title{align-items:flex-start}.workshop-edit-section-title>span{display:none}}
+.v-overlay__content .operational-field--active .v-field{background:#e5ecff!important}.v-overlay__content .operational-field--active .v-field__input,.v-overlay__content .operational-field--active .v-field__append-inner,.v-overlay__content .operational-field--active .v-select__selection{color:#2850e8!important;font-weight:800}.v-overlay__content .operational-field--active .v-field__prepend-inner{display:grid;place-items:center;align-self:center;width:23px;height:23px;margin:0 8px 0 0!important;padding:0!important;border-radius:50%;background:#2850e8;color:#fff!important}.v-overlay__content .operational-field--active .v-field__prepend-inner .v-icon{color:#fff!important;font-size:15px;line-height:1}.v-overlay__content .operational-field--inactive .v-field{background:#f1f3f5!important}.v-overlay__content .operational-field--inactive .v-field__input,.v-overlay__content .operational-field--inactive .v-field__append-inner,.v-overlay__content .operational-field--inactive .v-select__selection{color:#6b7280!important}.v-overlay__content .operational-field--inactive .v-field__prepend-inner{display:grid;place-items:center;align-self:center;width:23px;height:23px;margin:0 8px 0 0!important;padding:0!important;border-radius:50%;background:#7b8491;color:#fff!important}.v-overlay__content .operational-field--inactive .v-field__prepend-inner .v-icon{color:#fff!important;font-size:15px;line-height:1}
+.v-theme--dark .operational-field--active .v-field{background:#263a60!important}.v-theme--dark .operational-field--active .v-field__input,.v-theme--dark .operational-field--active .v-field__append-inner,.v-theme--dark .operational-field--active .v-select__selection{color:#8daeff!important}.v-theme--dark .operational-field--inactive .v-field{background:#343a42!important}.v-theme--dark .operational-field--inactive .v-field__input,.v-theme--dark .operational-field--inactive .v-field__append-inner,.v-theme--dark .operational-field--inactive .v-select__selection{color:#b9c2cd!important}
+.operational-state-field{min-width:0}
+.v-overlay__content .operational-state-field .v-field__input,.v-overlay__content .operational-state-field .v-field__append-inner,.v-overlay__content .operational-state-field .v-select__selection{align-items:center!important}
+@media(max-width:640px){.workshops-admin .table-heading{align-items:flex-start;flex-direction:column}.workshop-edit-launcher{width:100%}.workshop-edit-grid{grid-template-columns:1fr}.workshop-edit-photo__actions{align-items:stretch;flex-direction:column}.workshop-edit-photo__actions .v-btn{width:100%}}

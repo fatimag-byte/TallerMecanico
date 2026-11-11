@@ -6,8 +6,28 @@ backend/.env
 frontend/.env
 frontend/.env.local
 
+# Certificates, private keys and local runtime data
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.pid
+.DS_Store
+Thumbs.db
+.pytest_cache/
+.mypy_cache/
+backend/uploads/
+uploads/
+
 # Local dependencies and generated artifacts
 frontend/node_modules/
 frontend/dist/
 backend/__pycache__/
 backend/app/__pycache__/
+backend/.venv/
+**/__pycache__/

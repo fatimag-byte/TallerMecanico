@@ -1,0 +1,16 @@
+# Fase — Consistencia visual y lenguaje de interfaz
+
+| Actividad | Estado | Evidencia | Observaciones |
+|---|---|---|---|
+| Localizar componentes internos de Vuetify al español | COMPLETADO | `frontend/src/main.ts`; `npx vue-tsc -b && npx vite build` ejecutado el 2026-10-14 | Se configuró el locale `es` sin sustituir Vuetify. |
+| Presentar roles y permisos con etiquetas comprensibles | COMPLETADO | `frontend/src/utils/labels.ts`, `DashboardView.vue`, `ManageRolesView.vue` | Los identificadores de autorización se conservan en API; la UI no los expone como texto técnico. |
+| Unificar jerarquía visual de registro de clientes | COMPLETADO | `frontend/src/views/CustomerRegisterView.vue`; navegación SPA verificada | Encabezado, tarjetas y acciones siguen la identidad existente y respetan modo oscuro. |
+| Unificar jerarquía visual de registro de vehículos | COMPLETADO | `frontend/src/views/VehicleRegisterView.vue`; navegación SPA verificada | Conserva las validaciones y servicios existentes. |
+| Comprobar administración de clientes y pantallas de registro en navegador | COMPLETADO | Navegador local: `/clientes`, `/clientes/registro`, `/vehiculos/registro` | Se observaron controles, tabla y enlaces del menú lateral, sin modificar la navegación dinámica. |
+| Comprobar contraste y persistencia del modo oscuro | COMPLETADO | Navegador local en `/clientes/registro`; valor del switch `1` tras abrir una nueva pestaña y estilos computados de encabezado/tarjetas | Se corrigió el alcance de estilos de tema para que textos, tarjetas y formulario mantengan contraste; se restauró tema claro al finalizar. |
+| Modernizar administración de clientes | COMPLETADO | `frontend/src/views/CustomersManageView.vue`; navegador local `/clientes` | Métricas reales, filtros, tabla, acciones por icono y modal conservan la misma operación API. |
+| Uniformar administración de talleres | COMPLETADO | `frontend/src/views/WorkshopsManageView.vue`; compilación frontend | Se aplicó el mismo encabezado, tabla, filtros y modal visual sin modificar endpoints. |
+| Mantener altas vacías con ejemplos como placeholder | COMPLETADO | `WorkshopRegisterView.vue`, `CustomerRegisterView.vue`, `VehicleRegisterView.vue`; navegador `/talleres` | Se eliminó la precarga de un taller en la pantalla de alta; la edición continúa precargando su información real. |
+| Alinear campo RFC y correo | COMPLETADO | Navegador `/talleres`; ambos `v-field` medidos con altura de 48 px y misma posición superior | Se usan `variant="outlined"`, `density="comfortable"`, `single-line` y mensajes de ayuda externos. |
+| Mostrar icono de automóvil en registro de vehículo | COMPLETADO | `App.vue`, `styles/vehicle-icons.css`; navegador `/vehiculos/registro` | Se reemplazó el icono sin glifo de la fuente instalada y se verificó en sidebar expandido, contraído y encabezado. |
+| Estandarizar modales administrativos | COMPLETADO 2026-11-10 | `styles/theme.css`, `ManageRolesView.vue`, `CustomerRegisterView.vue`; `npm run build` | Los diálogos de permisos, roles, clientes, vehículos, talleres y confirmación comparten paleta, borde superior dorado, tipografía, campos y acciones. Se añadieron cabeceras y cierre explícito a los diálogos de roles y confirmación de alta. |

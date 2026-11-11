@@ -4,28 +4,120 @@
 
 Construir progresivamente una aplicación para la gestión de talleres mecánicos, comenzando por M01 — Identidad, Usuarios, Roles y Permisos.
 
-## Fase activa: M01 — Validación de integración
+## Fase activa: M01 — Gestión de roles y permisos
+
+## Actualización 2026-10-14
+
+- **COMPLETADO:** dashboard administrativo integrado al layout lateral, sin métricas ficticias y con roles extensos contenidos.
+- **COMPLETADO 2026-10-14:** registro y administración de clientes, administración de talleres y registro/asociación de vehículos cuentan con migración incremental, endpoints protegidos, persistencia MySQL y comprobaciones de integración documentadas.
+- **COMPLETADO 2026-10-14:** Alembic ejecuta con `taller_migrator`; la revisión `20261014_0002` está aplicada. Las tablas `workshops`, `customers`, `vehicles` y `audit_logs` se verificaron con relaciones y DML de `taller_app`.
+- **COMPLETADO 2026-10-14:** rutas SPA de registro/administración de clientes, administración de talleres y registro de vehículos conectadas a FastAPI/MySQL y verificadas visualmente.
+- **COMPLETADO 2026-10-14:** domicilio inteligente reutilizable para talleres, alta y edición de clientes; FastAPI consulta un proveedor SEPOMEX normalizado y valida la combinación geográfica antes de persistir. La revisión Alembic `20261014_0003` se aplicó sin modificar datos existentes.
+- **COMPLETADO 2026-10-29:** administración de vehículos, consulta protegida, filtros, detalle con fotografías y desactivación lógica. La revisión `20261029_0004` almacena fotografías de vehículos en MySQL y el registro valida VIN y archivos de hasta 15 MB.
+- **COMPLETADO 2026-11-04:** UC-CV-08 permite actualizar los datos principales de vehículos mediante modal administrativo. La revisión `20261104_0007` registra fecha y responsable de actualización; FastAPI restringe la operación a Administrador/Recepcionista, conserva VIN, cliente y taller como datos inmutables, rechaza actualizaciones con campos nulos, mantiene placas editables y el modal muestra las fotografías ya asociadas con acciones responsivas.
+- **COMPLETADO 2026-11-05:** el orquestador documental fue empaquetado e instalado como skill explícita `$orquestador`; su fuente mantiene referencias verificadas a todos los archivos Markdown del repositorio.
+- **COMPLETADO 2026-11-09:** Login y Registro corrigen las capas oscuras heredadas de Vuetify: sin rectángulos azul marino en inputs, ayudas o casilla; campos con superficie gris contrastada, iconos visibles y validaciones legibles. La compilación Vue/Vite y el recorrido visual de ambos temas finalizaron correctamente.
+- **COMPLETADO 2026-11-09:** Registro conserva una cuadrícula personal alineada aun con ayudas o validaciones; Login y Registro cuentan con separación uniforme entre controles y alertas de acceso discretas, legibles y consistentes en tema claro y oscuro.
+- **COMPLETADO 2026-11-09:** La validación opcional de apellido materno quedó anclada a toda la cadena: acepta nombres con acentos y ñ, rechaza números o símbolos no permitidos y normaliza valores vacíos a `NULL` en frontend y backend.
+- **COMPLETADO 2026-11-09:** Login y Registro unifican la superficie de `:-webkit-autofill` con el contenedor Vuetify, incluidos iconos y botón de visibilidad, en modo claro y oscuro.
+- **COMPLETADO 2026-11-09:** las etiquetas flotantes de todos los campos de Login y Registro permanecen visibles sobre el borde del control en ambos temas; el ajuste conserva la superficie continua del autofill sin alterar reglas de validación.
+- **COMPLETADO 2026-11-09:** se creó, por solicitud explícita, una cuenta local activa con rol Administrador y se verificó el inicio de sesión mediante FastAPI; las credenciales no se registran en documentación.
+- **COMPLETADO 2026-11-10:** el registro de talleres en modo oscuro usa campos y menús de ubicación con superficies grises neutras, iconografía plana, selector de archivo legible y etiquetas flotantes visibles; se verificó la pantalla en ambos temas sin alterar su lógica.
+- **COMPLETADO 2026-11-10:** el dashboard administrativo recibió un rediseño moderno y responsivo: jerarquía visual refinada, métricas legibles y permisos compactados a dos chips con detalle adicional accesible mediante `+N`; `npm run build` finalizó sin errores.
+- **COMPLETADO 2026-11-10:** modo oscuro unificado para AutoGestión: paleta central en Vuetify/CSS, iconografía administrativa plana, contraste de textos y campos, botones de acción consistentes y modal de perfil de acceso organizado; recorrido visual autenticado y compilación satisfactoria.
+- **COMPLETADO 2026-11-10:** el modal de actualización de vehículo se refinó sin alterar UC-CV-08: cabecera y acciones persistentes, asociaciones de solo lectura, VIN protegido, cuadrícula de datos y adaptación clara/oscura verificadas. Se comprobó el cierre seguro con Cancelar y X; Guardar no se envió para no modificar unidades reales.
+- **COMPLETADO 2026-11-10:** los diálogos de AutoGestión comparten un estándar visual reusable: paleta, borde dorado superior, cabecera, campos, pie y acciones. Se centralizó éxito en `#237E18`, se actualizaron los diálogos de rol/confirmación sin tocar lógica y se comprobó el patrón de vehículos en ambos temas.
+- **COMPLETADO 2026-11-10:** el encabezado de “Permisos de usuario” se ajustó de forma aislada: escudo y divisor dorados, jerarquía tipográfica, sin X ni franja superior; el cierre permanece únicamente en el pie.
+- **COMPLETADO 2026-11-10:** se corrigió el modo oscuro que ocultaba la aplicación por una regla scoped mal compilada; Dashboard fue verificado visible en oscuro y con retorno a claro desde el mismo selector.
+- **COMPLETADO 2026-11-10:** la ficha de taller fue ajustada al estándar visual solicitado: distribución fotografía/datos, iconografía y código postal dorados, estado operativo dinámico, cierre neutral con hover rojo y contraste claro/oscuro. La ficha activa se revisó en ambos temas; no había registro local inactivo para una comprobación visual sin alterar datos.
+- **COMPLETADO 2026-11-10:** se incorporó el modal y la ruta de actualización de talleres. Todos los datos operativos, comerciales, de domicilio, fotografía y estado son editables; la fecha de registro se mantiene histórica y bloqueada. Se conservaron validaciones, unicidad, geografía y auditoría.
+- **COMPLETADO 2026-11-10:** la edición de talleres se contextualizó por fila con icono de lápiz; se retiró la acción general. El modal reutiliza el domicilio inteligente de clientes y muestra la gestión visual de fotografía con previsualización antes de guardar, en claro y oscuro.
+- **COMPLETADO 2026-11-10:** el modal Editar taller se ajustó a la referencia visual con fecha histórica en franja dorada, bloque de dirección, carga de fotografía y pie fijo; Cancelar presenta el hover rojo solicitado.
+- **COMPLETADO 2026-11-10:** el selector operativo de Editar taller utiliza el indicador circular azul/gris solicitado y se reforzó la regla de negocio: talleres inactivos no pueden abrir ni persistir modificaciones hasta activarse.
+- **COMPLETADO 2026-11-10:** se refinó el encabezado de Editar taller sin franja superior ni X y se alineó el control de estado con su etiqueta externa, indicador y flecha.
+- **COMPLETADO 2026-11-10:** el guardado de Editar taller fue comprobado contra la API local: cierra el modal y comunica el éxito con una notificación verde. El hover de Guardar cambios utiliza un azul más intenso; las direcciones históricas sin modificación no son rechazadas por el catálogo actual.
+- **COMPLETADO 2026-11-10:** Correo de contacto y Estado operativo del modal Editar taller quedaron alineados mediante el mismo patrón de etiqueta flotante. Guardar cambios utiliza `#1738B8` al hover durante 200 ms y, tras respuesta exitosa, muestra una sola confirmación verde `#237E18` por 4 s antes de cerrar el modal.
+- **COMPLETADO 2026-11-10:** se centraron verticalmente el indicador, texto y flecha de Estado operativo en Editar taller para sus estados Activo e Inactivo. La comprobación se realizó en claro y oscuro, descartando el cambio temporal de estado y restaurando el tema claro.
+- **COMPLETADO 2026-11-10:** se corrigió el bloqueo indebido de Guardar cambios en Editar taller. El botón queda disponible salvo durante el envío; las validaciones existentes se conservan y se informan al intentar guardar. El flujo fue comprobado con guardado exitoso y confirmación verde.
+- **COMPLETADO 2026-11-10:** el modal Editar taller incorpora iconos representativos en sus campos, hover azul marino para Guardar cambios y confirmación verde translúcida sobre el modal por un segundo antes de cerrarse tras éxito de API.
+- **COMPLETADO 2026-11-10:** los estados hover, foco y clic de Guardar cambios se unificaron en azul marino, sin herencia roja para icono ni texto.
+- **COMPLETADO 2026-11-10:** se corrigió la especificidad CSS que hacía coincidir Guardar cambios con el hover rojo de Cancelar; sus estados interactivos son exclusivamente azul marino.
+- **COMPLETADO 2026-11-10:** Guardar cambios se marcó explícitamente como acción primaria de Vuetify para evitar cualquier coincidencia con el estilo rojo de Cancelar.
+- **COMPLETADO 2026-11-10:** la edición de taller confirma únicamente después de éxito de API: actualiza la tabla, cierra el modal y presenta un `v-snackbar` verde `#237E18` centrado abajo durante un segundo.
+- **COMPLETADO 2026-11-10:** la cabecera de Editar taller usa únicamente fondo azul claro `#E8F0FF`, lápiz azul intenso y divisor vertical `#2850E8`, manteniendo la composición existente.
+- **COMPLETADO 2026-11-10:** la cabecera de Editar taller actualizó su iconografía a fondo dorado suave `#F8E9CE`, lápiz y divisor vertical dorados `#B87912`, sin alterar su estructura.
+- **COMPLETADO 2026-11-10:** la cabecera de Editar taller conserva fondo `#F8E9CE`, con lápiz `#2850E8` y divisor vertical `#DDA34E`; no se modificó su composición.
+- **COMPLETADO 2026-11-10:** el diálogo Desactivar taller distingue la baja con advertencia, texto de impacto, Cancelar neutro/oscuro al hover y acción roja degradada, sin modificar el flujo de desactivación.
+- **COMPLETADO 2026-11-10:** Fecha de registro de Editar taller se integró bajo Correo de contacto en la primera columna, preservando su tarjeta histórica; Estado operativo mantiene la columna derecha.
+- **COMPLETADO 2026-11-10:** Fecha de registro se compactó a la altura del selector operativo, con icono y texto centrados y separación antes de Dirección, sin alterar sus datos históricos.
+- **COMPLETADO 2026-11-10:** el icono de ubicación de Dirección en Editar taller usa `#2850E8`, conservando el fondo `#F8E9CE` y su composición.
+- **COMPLETADO 2026-11-10:** `/clientes/registro` unificó iconografía de secciones, validación diferida de correos/teléfonos y confirmación verde inferior tras éxito de API; los errores preservan los datos capturados.
+- **COMPLETADO 2026-11-10:** `/clientes/registro` valida todos los obligatorios con mensajes por campo tras blur o intento de envío, corrige en tiempo real y autocierra la alerta general de error a los 3 s.
+- **COMPLETADO 2026-11-10:** `/clientes/registro` eliminó la confirmación modal; tras validar duplicados registra directamente, limpia los datos al éxito y muestra una alerta verde superior durante 3 s.
+- **COMPLETADO 2026-11-10:** el alta exitosa de clientes reinicia de forma integral el domicilio y sus selectores reactivos; se invalidan consultas pendientes y el aviso verde permanece 5 s.
+- **COMPLETADO 2026-11-10:** Administración de clientes modernizó el modal Actualizar cliente con cabecera azul clara y secciones Datos personales, Domicilio y Contacto con iconografía dorado/azul. Tras éxito de la API, cierra el diálogo, recarga la tabla y muestra una alerta verde por 3 s; los errores mantienen los datos y muestran la alerta roja solicitada por 3 s. El build de Vue/TypeScript finalizó correctamente.
+- **COMPLETADO 2026-11-10:** se corrigió la actualización de clientes: los opcionales vacíos ahora se envían como `null`, compatible con Pydantic, y el formulario compara su payload normalizado con el original para no llamar API ni notificar sin cambios. Los errores conservan el detalle real de la API y se autocierra el aviso a los 3 s. Build y validación de esquema completados; no se alteraron registros de producción/locales durante la verificación.
+- **COMPLETADO 2026-11-10:** en Actualizar cliente se cambió exclusivamente el fondo del icono de cabecera a `#64A6E3`, conservando el icono blanco, tamaño, bordes y alineación.
+- **COMPLETADO 2026-11-10:** `/vehiculos/registro` valida taller/cliente activos, VIN confirmado sin duplicado, marca, modelo y año antes de habilitar Registrar vehículo; placas y fotografías permanecen opcionales. El botón usa hover `#253B60`, se bloquea al enviar y muestra confirmación verde o error rojo durante 5 s. El formulario se limpia exclusivamente tras éxito de API.
+- **COMPLETADO 2026-11-10:** se corrigió la pantalla vacía de Administración de vehículos causada por sesiones antiguas sin el arreglo `roles`. La verificación de permisos es tolerante a ese estado y las rutas `/vehiculos` y `/vehiculos/registro` vuelven a renderizar correctamente.
+- **COMPLETADO 2026-11-11:** Actualizar vehículo usa un payload parcial: no manda Version, Color ni Kilometraje, y FastAPI conserva los campos omitidos o `null` mediante `exclude_unset/exclude_none`. Así se eliminó el 422 sin volver a mostrar campos ocultos. Tras éxito de API, muestra bajo el encabezado del modal una confirmación verde con check durante 3 s; el fallo conserva los datos y muestra sólo “No fue posible actualizar la información.” por 3 s. Build, esquema Pydantic y recarga autenticada desde MySQL verificaron el flujo.
+- **COMPLETADO 2026-11-11:** la confirmación de éxito de Actualizar vehículo se trasladó fuera del modal. Sólo tras respuesta API y recarga de tabla, cierra el diálogo y muestra bajo el título/descripción de Administración de vehículos la alerta verde con check por 3000 ms. El mensaje de error y el resto del diseño se conservan sin cambios.
+- **COMPLETADO 2026-11-11:** Ficha del vehículo incorpora navegación de fotografías ampliadas: miniaturas con zoom contenido a 300 ms y cursor pointer; lightbox centrado con fondo oscuro, proporción original, flechas, contador y cierre por X, Esc o clic fuera. Se verificó con `npm run build` sin modificar los demás flujos del modal.
+- **COMPLETADO 2026-11-11:** se rediseñó exclusivamente el visor de fotografías de Ficha del vehículo: tarjeta modal redondeada con encabezado/X, imagen proporcional centrada, flechas circulares azul intenso con hover azul oscuro, contador y miniaturas inferiores con borde dorado en la selección. Respeta claro/oscuro, evita scroll duplicado y compila con `npm run build`.
+- **COMPLETADO 2026-11-11:** el visor de fotografías fue compactado visualmente: menores dimensiones, márgenes y padding, junto con sombras más marcadas en el contenedor principal y las flechas. Conserva exactamente el layout, lógica y compatibilidad de temas; `npm run build` satisfactorio.
+- **COMPLETADO 2026-11-11:** se eliminó el visor ampliado de Ficha del vehículo por solicitud. Se retiraron su modal, clics, estado, navegación por teclado y estilos; las fotografías conservan únicamente su cuadrícula de miniaturas estáticas. Búsqueda sin referencias y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** las miniaturas estáticas de Ficha del vehículo recuperaron únicamente el hover con zoom contenido `scale(1.05)` y transición de 300 ms. No se reintrodujo lightbox, clic ni otra interacción; búsqueda y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** se eliminó exclusivamente la línea dorada horizontal superior de Ficha del vehículo; permanecen intactos el diseño restante y sus funcionalidades. `npm run build` finalizó correctamente; Vite/FastAPI quedaron activos en `127.0.0.1:5173` y `127.0.0.1:8000`.
+- **COMPLETADO 2026-11-11:** /roles/nuevo incorpora el formulario de dos columnas con permisos agrupados, selección individual/total, validaciones y creación mediante la API actual. Al éxito redirige a Administración de roles y muestra una alerta verde por 5 s; npm run build finalizó correctamente.
+- **COMPLETADO 2026-11-11:** el modal Retirar usuario de Administración de roles se alineó visualmente a Desactivar taller, conservando íntegros el flujo, la API y el comportamiento responsivo/claro-oscuro; npm run build finalizó correctamente.
+- **COMPLETADO 2026-11-11:** Administración de roles eliminó el toast flotante duplicado; las operaciones exitosas comunican sólo mediante la alerta verde bajo el encabezado por 3000 ms. npm run build finalizó correctamente.
+- **COMPLETADO 2026-11-11:** el modal Permisos asignados de Administración de roles ahora presenta los permisos reales en tarjetas responsivas de dos columnas, con cabecera y modos claro/oscuro actualizados; npm run build finalizó correctamente.
+- **COMPLETADO 2026-11-11:** en Permisos asignados se reemplazó exclusivamente la corona junto al rol por el icono de persona azul; el fondo dorado, tamaño, posición y diseño permanecen intactos. Inspección visual local y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** en Permisos asignados, Cerrar adoptó superficie blanca, borde gris y estados rojos suaves; Acceso completo usa fondo gris claro conservando su texto azul. Posición, tamaños y funcionalidades permanecen intactos. Inspección visual local y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** Eliminar rol adoptó el patrón visual de Retirar usuario, con advertencia, rol dinámico y acciones neutra/roja. Se preservaron la eliminación real y sus restricciones; inspección visual local y `npm run build` satisfactorios, sin eliminar registros durante la comprobación.
+- **COMPLETADO 2026-11-11:** Editar rol se actualizó sin cambiar sus operaciones: modal compacto a dos columnas, encabezado y acciones fijas, contenido con scroll único, permisos reales agrupados y selección individual/por categoría. Guardar cambios se activa sólo con modificaciones válidas; `npm run build` satisfactorio.
+- **COMPLETADO 2026-11-11:** Editar rol alineó Nombre y Descripción con dimensiones equivalentes; las etiquetas de permisos son negras y en negritas en tema claro, sin alterar checkboxes, estados ni demás elementos. Inspección visual y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** se eliminó el modo oscuro global: no hay selectores en acceso ni administración, Vuetify inicia únicamente en claro y la preferencia previa se limpia al cargar. `npm run build` satisfactorio.
+- **COMPLETADO 2026-11-11:** Salir requiere confirmación visual antes de cerrar sesión. Cancelar/X no alteran la sesión; la acción confirmada conserva el logout seguro y la redirección existentes. `npm run build` satisfactorio.
+- **COMPLETADO 2026-11-11:** el modal de confirmación de salida reorganizó icono, textos y botones centrados, con acciones de igual altura y sin cambios de comportamiento. Inspección visual y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** Editar rol adoptó la referencia visual de cabecera azul clara y dorados, tarjetas de permisos compactas, scroll único y botón Guardar gris/azul según cambios válidos. Se preservó la integración FastAPI/MySQL; inspección visual y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** Alta de centro automotriz actualizó exclusivamente a dorado suave el fondo de los iconos de Datos del establecimiento, Domicilio y Foto del centro automotriz. Inspección visual y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** Editar rol adoptó su referencia más reciente: cabecera blanca, icono azul claro, divisor dorado y bloque de permisos separado de las tarjetas, sin cambiar comportamiento. Inspección visual y `npm run build` satisfactorios.
+- **COMPLETADO 2026-11-11:** Editar rol actualizó exclusivamente a dorado suave el fondo del icono de escudo de su cabecera. Inspección visual y `npm run build` satisfactorios.
 
 ### Dependencias abiertas
 
-- Instancia MySQL local disponible y configuración local no versionada.
-- Dependencias Python instaladas en un entorno aislado.
-- Revisión no destructiva de la migración de datos personales.
+- La migración inicial Alembic `20261009_0001` se aplicó mediante una cuenta temporal de migraciones. `taller_app` continúa con permisos DML y gestiona las operaciones normales.
+- Registro, duplicados, hash bcrypt, login, JWT, refresh token rotativo y rutas protegidas cuentan con pruebas reales contra MySQL local.
+- Recuperación de contraseña por correo permanece fuera de esta integración. La gestión real de roles cuenta con endpoints protegidos y vistas propias; la administración de usuarios sigue fuera de este alcance.
 
 ### Próximas actividades autorizables
 
 | ID | Actividad planificada | Criterio de aceptación |
 |---|---|---|
-| PLAN-M01-01 | Verificar conexión FastAPI–MySQL sin exponer credenciales | Conexión autenticada y base objetivo identificada. |
-| PLAN-M01-02 | Aplicar/revisar migración no destructiva de usuarios | Tablas y columnas verificadas sin pérdida de registros. |
-| PLAN-M01-03 | Probar registro, duplicado y login reales | Evidencia de datos persistidos, rechazo 409 y autenticación exitosa. |
-| PLAN-M01-04 | Revisar integración real del dashboard de roles | Eliminar o aislar la dependencia de demostración antes de declararlo integrado. |
+| PLAN-M01-01 | Corregir y verificar conexión FastAPI–MySQL sin exponer credenciales | COMPLETADO: `SELECT 1` autenticado y base objetivo identificada el 2026-10-09. |
+| PLAN-M01-02 | Aplicar/revisar migración no destructiva de usuarios | COMPLETADO: revisión `20261009_0001` aplicada a una base vacía; tablas y versión verificadas. |
+| PLAN-M01-03 | Probar registro, duplicado y login reales | COMPLETADO: persistencia, rechazo 409, login, JWT, refresh y autorización verificados contra MySQL. |
+| PLAN-M01-04 | Integrar gestión real de roles y permisos | COMPLETADO: CRUD protegido, verificación remota de unicidad, asociación/retiro de usuarios y vistas Vue administrativas verificados contra MySQL el 2026-10-09. |
 | PLAN-M01-05 | Diseñar recuperación de contraseña real | Token de un solo uso y proveedor de correo definidos en una fase autorizada. |
+| PLAN-M01-06 | Implementación de pantallas de centro automotriz y refinamiento de roles | COMPLETADO: Vista de registro de centro automotriz (`/talleres`), catálogo de estados/municipios, dropzone con validación, métricas, filtros y toggle de estado en roles verificado con build sin errores el 2026-10-13. |
 
 ## Módulos posteriores
 
-Clientes, vehículos, órdenes de reparación, diagnósticos, refacciones e inventario permanecen fuera de alcance hasta recibir una solicitud específica.
+- **COMPLETADO 2026-11-10:** el alta exitosa de vehículos reinicia también el selector de archivos, fotos y URLs temporales; la confirmación sigue visible 5 s. Se modernizó el diálogo Desactivar cliente, sin tocar su baja lógica, y el icono de cabecera de Actualizar cliente volvió a fondo dorado suave `#F8E9CE` con icono azul.
+- **COMPLETADO 2026-11-10:** Administración de vehículos rediseñó la baja con advertencia, vehículo identificado, acciones consistentes y tema oscuro. La baja exitosa actualiza tabla y contadores, cierra el diálogo y muestra un aviso verde de 5 s; el error mantiene el diálogo y muestra aviso rojo de 5 s.
+- **COMPLETADO 2026-11-10:** Actualizar vehículo simplificó su contenido al ocultar datos complementarios, mejoró la gestión de fotografías múltiples (alta y eliminación) y sólo permite guardar cambios válidos y reales. El resultado exitoso refresca el listado y presenta un aviso verde durante 5 s; `npm run build` concluyó correctamente.
+- **COMPLETADO 2026-11-10:** los encabezados Información vinculada y Datos del vehículo de Actualizar vehículo unificaron su iconografía con fondo dorado suave e iconos azules, sin cambios funcionales.
+- **COMPLETADO 2026-11-10:** Actualizar vehículo eliminó su scroll anidado: contenido con desplazamiento único, encabezado y acciones fijos, y un contenedor externo automático que no estira la altura del modal.
+- **COMPLETADO 2026-11-10:** la inspección DOM y visual de Actualizar vehículo confirmó que el segundo scroll provenía de `v-card`; se anuló su overflow/flex heredado, se recorrió hasta el final y quedó una sola barra interna sin espacio vacío.
+- **COMPLETADO 2026-11-10:** la galería de Actualizar vehículo se unificó en tarjetas responsivas con distintivo Principal, acciones circulares de reemplazo/eliminación y carga múltiple con formatos y límite existentes.
+- **COMPLETADO 2026-11-11:** el distintivo Principal de la fotografía de Actualizar vehículo usa cápsula azul marino semitransparente, estrella dorada y texto blanco, sin cambios funcionales.
+
+Órdenes de reparación, diagnósticos, refacciones e inventario permanecen fuera de alcance hasta recibir una solicitud específica.
 
 ## Criterio de cierre de M01
 
 M01 sólo podrá cerrarse cuando la base de datos, registro, login, renovación de sesión, duplicados y autorización básica cuenten con evidencia de pruebas reales, y el alcance de recuperación de contraseña haya sido resuelto o diferido explícitamente.
+## Preparación de despliegue
+
+- **COMPLETADO 2026-11-11:** se preparó el repositorio para Railway sin desplegarlo: `backend/railway.toml` instala dependencias, aplica migraciones Alembic no destructivas y arranca Uvicorn con health check; `DESPLIEGUE_RAILWAY.md` documenta servicios separados, variables y persistencia de fotografías en MySQL. Se validaron compilación Vue/TypeScript, dependencias Python y versión Alembic local. La promoción queda pendiente de configurar los secretos y dominios HTTPS reales en Railway.

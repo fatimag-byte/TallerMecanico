@@ -2,8 +2,13 @@ flowchart LR
   Browser["Navegador SPA"] --> Vue["Vue 3 + TypeScript + Vuetify"]
   Vue --> Router["Vue Router"]
   Vue --> Axios["Axios /api"]
+  Vue --> RoleViews["CreateRoleView / ManageRolesView"]
+  RoleViews --> Axios
+  API --> RoleAdmin["Roles: unicidad y asociaciones de usuarios"]
+  RoleAdmin --> Models
   Axios --> API["FastAPI"]
   API --> Auth["JWT, bcrypt, refresh tokens"]
   API --> ORM["SQLAlchemy"]
-  ORM -. "configuración prevista" .-> MySQL[("MySQL Server")]
+  ORM -. "persistencia verificada" .-> MySQL[("MySQL Server local")]
+  Alembic["Alembic (migración controlada)"] -.-> MySQL
   API --> Models["User / Role / Permission / RefreshToken"]

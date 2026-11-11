@@ -1,0 +1,10 @@
+# Fase — Registrar clientes
+
+| Actividad | Estado | Evidencia | Observaciones |
+|---|---|---|---|
+| Modelo, validación y endpoints | COMPLETADO | `backend/app/models.py`, `schemas.py`, `main.py`, migración `20261014_0002` aplicada | Persistencia MySQL disponible mediante `taller_app` para DML. |
+| Registro, duplicados y auditoría real | COMPLETADO | Prueba autenticada 2026-10-14: `POST /api/customers` 201, duplicados 200 y `audit_logs` | Cliente de prueba asociado a taller activo; no se usa `localStorage` como respaldo. |
+| Validación y confirmación de registro | COMPLETADO | `CustomerRegisterView.vue`, `styles/theme.css`; `npm run build` 2026-11-10 | Correos y teléfonos muestran formato inválido solo tras perder foco o intentar enviar. Tras éxito de `createCustomer` se limpia el formulario y se muestra una confirmación inferior centrada durante 1 s; los fallos preservan los datos y muestran el detalle recibido de la API. |
+| Mensajes por campo del alta | COMPLETADO | `CustomerRegisterView.vue`, `SmartAddressFields.vue`; recorrido visual y `npm run build` 2026-11-10 | Todos los obligatorios reportan su error bajo el control tras blur o intento de envío: datos personales, domicilio, asociación y contacto. La corrección reactiva elimina el error; la alerta general se cierra automáticamente en 3 s. |
+| Alta directa sin confirmación modal | COMPLETADO | `CustomerRegisterView.vue`; `npm run build` 2026-11-10 | Se retiró el modal Confirmar registro. Tras validar los campos y duplicados, la misma acción realiza el POST; el botón queda bloqueado durante el proceso. Éxito limpia todos los datos y muestra alerta verde superior durante 3 s; errores preservan la captura. |
+| Reinicio integral de domicilio tras alta | COMPLETADO | `CustomerRegisterView.vue`, `SmartAddressFields.vue`; `npm run build` 2026-11-10 | El éxito de API incrementa un token de reinicio que cancela respuestas de ubicación pendientes y borra valores, selectores dependientes, mensajes y marcas de validación del domicilio. La alerta de éxito dura 5 s. |

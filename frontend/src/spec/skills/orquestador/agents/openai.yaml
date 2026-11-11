@@ -1,0 +1,6 @@
+interface:
+  display_name: "Orquestador TallerMecanico"
+  short_description: "Inicia trabajo guiado por el orquestador"
+  default_prompt: "Usa $orquestador para analizar y ejecutar esta tarea dentro de TallerMecanico."
+policy:
+  allow_implicit_invocation: false

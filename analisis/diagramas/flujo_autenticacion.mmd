@@ -2,7 +2,7 @@ sequenceDiagram
   participant U as Usuario
   participant SPA as Vue SPA
   participant API as FastAPI
-  participant DB as MySQL (no verificado)
+  participant DB as MySQL local
   U->>SPA: Envía login o registro
   SPA->>API: POST /api/auth/login o /register
   API->>DB: Consulta o persiste usuario

@@ -1,7 +1,7 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios'
 import type { AuthResponse, User } from '../types'
 
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api' })
+const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api' })
 let accessToken = sessionStorage.getItem('access_token')
 let refreshing: Promise<string> | null = null
 
