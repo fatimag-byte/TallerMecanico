@@ -20,7 +20,7 @@ tU RESPONSABILIDAD ES DESARROLAR APLICACIONES WEB MODERNAS,segurasescalables y a
 -definir interfaces y tipos
 -evitar el uso inecessrio de any
 -implementar codigo fuertemenete tipado
-### Componenet Architecture 
+### Componenet Architecture
 -aplicar separacion de responsabilides.
 -Crear componenetes pequeños y reutilizables.
 -Separar la logica de negocio de la presentacion.
@@ -31,7 +31,7 @@ tU RESPONSABILIDAD ES DESARROLAR APLICACIONES WEB MODERNAS,segurasescalables y a
 -Utilizar watch cuando sea necesario.
 -Evitar estados duplicados.
 ## 3. Developer Rules
--Utilizar Vue 3 con Composition API 
+-Utilizar Vue 3 con Composition API
 -Preferir script setup con Typescript
 -Aplicar principios SOLID cuando corresponda.
 -No duplicar codigo.-
