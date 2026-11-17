@@ -502,6 +502,20 @@ def deactivate_workshop(workshop_id: int, user: User = Depends(require_permissio
     db.commit()
     return _workshop_data(workshop)
 
+@app.patch('/api/workshops/{workshop_id}/activate')
+def activate_workshop(workshop_id: int, user: User = Depends(require_permission('workshops:manage')), db: Session = Depends(get_db)):
+    if not any(role.name.casefold() == 'administrador' for role in user.roles):
+        raise HTTPException(403, 'Solo un administrador puede reactivar talleres.')
+    workshop = db.query(Workshop).filter(Workshop.id == workshop_id).first()
+    if not workshop:
+        raise HTTPException(404, 'Taller no encontrado.')
+    if workshop.is_active:
+        raise HTTPException(409, 'Este taller ya se encuentra activo.')
+    workshop.is_active = True
+    _audit(db, 'workshop', workshop.id, 'activate', user.id)
+    db.commit()
+    return _workshop_data(workshop)
+
 @app.get('/api/customers')
 def customers(workshop_id:int|None=None,search:str='',status_filter:str='todos',_:User=Depends(require_permission('customers:manage')),db:Session=Depends(get_db)):
     q=db.query(Customer)

@@ -29,6 +29,7 @@
 | M01-019 | Cuenta local Administrador solicitada | COMPLETADO | Usuario activo asociado al rol `administrador`; `POST /api/auth/login` validado localmente, 2026-11-09 | La contraseña fue procesada exclusivamente mediante bcrypt y no se registra en archivos de seguimiento. |
 | M01-020 | Confirmación de cierre de sesión | COMPLETADO | `frontend/src/App.vue`; inspección visual local y `npm run build`, 2026-11-11 | “Salir” abre un diálogo de confirmación. Cancelar y X conservan la sesión; confirmar reutiliza `logout()` para revocar/limpiar el refresh token y redirigir a login. |
 | M01-021 | Composición centrada de confirmación de salida | COMPLETADO | `frontend/src/App.vue`; inspección visual local y `npm run build`, 2026-11-11 | Icono, título, descripción y acciones se centraron; los botones comparten altura y la X se conserva en la esquina superior derecha. No cambió el flujo de sesión. |
+| M01-022 | Alertas integradas de Crear cuenta | IMPLEMENTADO | `RegisterView.vue`; `npm run build`, 2026-11-17 | Éxito muestra una alerta verde horizontal bajo el encabezado por 3 s antes de redirigir; fallos muestran una alerta roja y preservan los datos. No se creó una cuenta de prueba. |
 
 ## Implementado e identificado
 

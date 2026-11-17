@@ -42,12 +42,27 @@ function isRoleActive(role: Role): boolean {
   return roleActiveStatus.value[role.id] ?? true
 }
 
+function canToggleRoleStatus(role: Role): boolean {
+  if (role.name.toLowerCase() === 'administrador') return false
+  return !isRoleActive(role) || role.user_count === 0
+}
+
+function roleStatusActionHint(role: Role): string {
+  if (role.name.toLowerCase() === 'administrador') return 'El rol Administrador principal no puede desactivarse.'
+  if (isRoleActive(role) && role.user_count > 0) return `No se puede desactivar: tiene ${role.user_count} usuario(s) asociado(s).`
+  return isRoleActive(role) ? 'Desactivar rol' : 'Activar rol'
+}
+
 function toggleRoleStatus(role: Role) {
   if (role.name.toLowerCase() === 'administrador') {
     error.value = 'El rol Administrador principal no puede ser desactivado.'
     return
   }
   const current = isRoleActive(role)
+  if (current && role.user_count > 0) {
+    error.value = `No se puede desactivar el rol "${role.name}" porque tiene ${role.user_count} usuario(s) asociado(s). Retíralos primero.`
+    return
+  }
   roleActiveStatus.value[role.id] = !current
   localStorage.setItem('taller_roles_status', JSON.stringify(roleActiveStatus.value))
   showSuccess(!current ? `El perfil "${role.name}" ahora está activo.` : `El perfil "${role.name}" ha sido desactivado.`)
@@ -382,7 +397,7 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
               <tr
                 v-for="role in filtered"
                 :key="role.id"
-                :class="{ selected: selectedRole?.id === role.id }"
+                :class="{ selected: selectedRole?.id === role.id, 'role-inactive': !isRoleActive(role) }"
                 @click="loadRoleUsers(role)"
               >
                 <!-- Nombre y descripción -->
@@ -392,18 +407,20 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
                 </td>
 
                 <!-- Conteo de usuarios -->
-                <td class="font-weight-medium">{{ role.user_count }}</td>
+                <td>
+                  <div class="users-count" :class="{ 'users-count--linked': role.user_count > 0 }">
+                    <v-icon :icon="role.user_count > 0 ? 'mdi-account-group-outline' : 'mdi-account-outline'" size="16" />
+                    <strong>{{ role.user_count }}</strong>
+                    <span>{{ role.user_count === 1 ? 'usuario' : 'usuarios' }}</span>
+                  </div>
+                </td>
 
                 <!-- Estado con viñeta activa/inactiva -->
                 <td>
-                  <div v-if="isRoleActive(role)" class="status-badge status-active">
-                    <span class="status-dot active"></span>
-                    <span>Activo</span>
-                  </div>
-                  <div v-else class="status-badge status-inactive">
-                    <span class="status-dot inactive"></span>
-                    <span>Inactivo</span>
-                  </div>
+                  <v-chip :color="isRoleActive(role) ? 'success' : 'grey'" size="small" variant="tonal" class="role-status-chip">
+                    <v-icon start size="14" :icon="isRoleActive(role) ? 'mdi-check-circle' : 'mdi-pause-circle'" />
+                    {{ isRoleActive(role) ? 'Activo' : 'Inactivo' }}
+                  </v-chip>
                 </td>
 
                 <!-- Fecha de actualización -->
@@ -411,23 +428,8 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 
                 <!-- Acciones -->
                 <td class="actions-cell">
-                  <!-- Botón asociar/ver usuarios -->
-                  <v-tooltip text="Administrar usuarios">
-                    <template #activator="{ props }">
-                      <v-btn
-                        v-bind="props"
-                        icon="mdi-account-group-outline"
-                        variant="text"
-                        size="small"
-                        color="primary"
-                        aria-label="Administrar usuarios"
-                        @click.stop="loadRoleUsers(role)"
-                      />
-                    </template>
-                  </v-tooltip>
-
                   <!-- Toggle switch para activar/desactivar estado -->
-                  <v-tooltip :text="isRoleActive(role) ? 'Desactivar rol' : 'Activar rol'">
+                  <v-tooltip :text="roleStatusActionHint(role)">
                     <template #activator="{ props }">
                       <v-btn
                         v-bind="props"
@@ -435,22 +437,23 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
                         variant="text"
                         size="small"
                         :color="isRoleActive(role) ? 'primary' : 'grey'"
-                        :disabled="role.name.toLowerCase() === 'administrador'"
+                        :disabled="!canToggleRoleStatus(role)"
                         aria-label="Cambiar estado del rol"
                         @click.stop="toggleRoleStatus(role)"
                       />
                     </template>
                   </v-tooltip>
 
-                  <!-- Menú de opciones extra: Editar, Detalle, Eliminar -->
+                  <!-- Menú de acciones del rol -->
                   <v-menu location="bottom end">
                     <template #activator="{ props }">
                       <v-btn v-bind="props" icon="mdi-dots-vertical" variant="text" size="small" color="grey-darken-1" />
                     </template>
                     <v-list density="compact" elevation="2" rounded="lg">
-                      <v-list-item prepend-icon="mdi-eye-outline" title="Ver detalles" @click="detail = role" />
-                      <v-list-item prepend-icon="mdi-pencil-outline" title="Editar rol" @click="openEdit(role)" />
+                      <v-list-item class="role-action-menu__detail" prepend-icon="mdi-eye-outline" title="Ver detalles" @click="detail = role" />
+                      <v-list-item class="role-action-menu__edit" prepend-icon="mdi-pencil-outline" title="Editar rol" @click="openEdit(role)" />
                       <v-list-item
+                        class="role-action-menu__delete"
                         prepend-icon="mdi-delete-outline"
                         title="Eliminar rol"
                         color="error"
@@ -565,7 +568,7 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
     <!-- Diálogos modales para Detalle, Edición y Confirmaciones -->
     <v-dialog :model-value="!!detail" max-width="560" @update:model-value="v => { if (!v) detail = null }">
       <v-card v-if="detail" class="dialog-card permissions-detail-dialog">
-        <header class="permissions-detail-dialog__header"><div class="permissions-detail-dialog__crown"><v-icon icon="mdi-account-outline" size="25" /></div><span class="permissions-detail-dialog__divider" aria-hidden="true" /><div><h2>{{ detail.name }}</h2><v-chip class="permissions-detail-dialog__badge" size="x-small">Acceso completo</v-chip></div><v-btn class="permissions-detail-dialog__close" aria-label="Cerrar detalle de rol" icon="mdi-close" variant="text" @click="detail = null" /></header>
+        <header class="permissions-detail-dialog__header"><div class="permissions-detail-dialog__crown"><v-icon icon="mdi-account-outline" size="25" /></div><div><h2>{{ detail.name }}</h2><p>Permisos y accesos configurados para este rol.</p></div><v-btn class="permissions-detail-dialog__close" aria-label="Cerrar detalle de rol" icon="mdi-close" variant="text" @click="detail = null" /></header>
         <v-card-text class="permissions-detail-dialog__content"><div class="permissions-detail-dialog__section-title"><div><v-icon icon="mdi-key-variant" size="21" /></div><div><h3>Permisos asignados</h3><p>Accesos configurados actualmente para este rol.</p></div></div><div v-if="detail.permissions.length" class="permissions-detail-dialog__grid"><article v-for="permission in detail.permissions" :key="permission.id" class="permission-detail-card"><v-icon icon="mdi-key-outline" size="20" /><span>{{ permissionLabel(permission.code) }}</span></article></div><div v-else class="permissions-detail-dialog__empty"><v-icon icon="mdi-key-off" size="25" />Este rol no tiene permisos asignados.</div></v-card-text>
         <v-card-actions class="permissions-detail-dialog__actions">
           <v-spacer />
@@ -576,7 +579,7 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 
     <v-dialog :model-value="!!editing" max-width="960" @update:model-value="v => { if (!v) editing = null }">
       <v-card v-if="editing" class="dialog-card role-edit-dialog">
-        <header class="role-edit-dialog__header"><div class="role-edit-dialog__icon"><v-icon icon="mdi-shield-edit-outline" size="27" /></div><span class="role-edit-dialog__divider" aria-hidden="true" /><div><h2>Editar rol</h2><p>Actualiza la información y los permisos asignados.</p></div><v-btn class="role-edit-dialog__close" aria-label="Cerrar edición de rol" icon="mdi-close" variant="text" :disabled="saving" @click="editing = null" /></header>
+        <header class="role-edit-dialog__header"><div class="role-edit-dialog__icon"><v-icon icon="mdi-shield-edit-outline" size="25" /></div><div><h2>Editar rol</h2><p>Actualiza la información y los permisos asignados.</p></div><v-btn class="role-edit-dialog__close" aria-label="Cerrar edición de rol" icon="mdi-close" variant="text" :disabled="saving" @click="editing = null" /></header>
         <v-card-text class="role-edit-dialog__content">
           <div class="role-edit-dialog__fields">
             <v-text-field v-model.trim="form.name" label="Nombre del rol" prepend-inner-icon="mdi-shield-account-outline" variant="outlined" density="comfortable" :error="form.name.length > 0 && form.name.trim().length < 3" :error-messages="form.name.length > 0 && form.name.trim().length < 3 ? 'Ingresa al menos 3 caracteres.' : []" />
@@ -677,11 +680,10 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 
 .permissions-detail-dialog { display:flex; flex-direction:column; max-height:calc(100dvh - 48px); overflow:hidden; padding:0; border:1px solid #e4e9f2; border-radius:18px; background:#fff; box-shadow:0 18px 42px rgba(20,43,80,.16); }
 .permissions-detail-dialog::before { display:none !important; }
-.permissions-detail-dialog__header { display:flex; align-items:center; gap:14px; flex:none; padding:23px 27px 20px; border-bottom:1px solid #e4eaf1; background:#fff; }
-.permissions-detail-dialog__crown { display:grid; place-items:center; width:48px; height:48px; flex:none; border-radius:13px; background:#f8e9ce; color:#2850e8; }
-.permissions-detail-dialog__divider { align-self:stretch; width:2px; border-radius:2px; background:#dda34e; }
-.permissions-detail-dialog__header h2 { margin:0 0 6px; color:#172b4d; font-size:1.25rem; font-weight:800; }
-.permissions-detail-dialog__badge { background:#eef0f3 !important; color:#2850e8 !important; font-weight:800; }
+.permissions-detail-dialog__header { display:flex; align-items:center; gap:13px; flex:none; padding:22px 26px; border-bottom:1px solid #ead39e; background:#fff9eb; }
+.permissions-detail-dialog__crown { display:grid; place-items:center; width:44px; height:44px; flex:none; border-radius:12px; background:#f8e9ce; color:#2850e8; }
+.permissions-detail-dialog__header h2 { margin:0; color:#142b50; font-size:1.14rem; font-weight:800; }
+.permissions-detail-dialog__header p { margin:4px 0 0; color:#64748b; font-size:.82rem; }
 .permissions-detail-dialog__close { margin-left:auto; color:#718096; border-radius:9px; }
 .permissions-detail-dialog__close:hover { background:rgba(198,70,70,.10); color:#c64747; }
 .permissions-detail-dialog__content { flex:1 1 auto; overflow-y:auto; padding:23px 27px 20px; }
@@ -808,7 +810,7 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 /* Grilla de gestión */
 .manage-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.8fr) minmax(330px, 1.15fr);
+  grid-template-columns: minmax(0, 2fr) minmax(330px, 1fr);
   gap: 24px;
   align-items: start;
 }
@@ -865,18 +867,28 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 
 /* Tabla */
 .table-wrap {
+  overflow: visible;
+  margin-top: 20px;
+  border: 1px solid #E5EAF2;
+  border-radius: 14px;
+  background: #FFFFFF;
+}
+
+.roles-table :deep(.v-table__wrapper) {
   overflow-x: auto;
-  margin-top: 18px;
+  border-radius: 14px;
 }
 
 .roles-table {
-  min-width: 620px;
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
 }
 
 .roles-table :deep(th) {
-  background: #F6F8FC;
-  color: #718096;
-  font-size: 0.7rem;
+  background: #F3F6FB;
+  color: #587096;
+  font-size: 0.69rem;
   letter-spacing: 0.7px;
   font-weight: 800;
   white-space: nowrap;
@@ -884,18 +896,50 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 
 .roles-table :deep(td),
 .roles-table :deep(th) {
-  padding: 15px 14px !important;
+  padding: 17px 16px !important;
   border-color: #EEF2F6 !important;
+}
+
+.roles-table :deep(th:first-child),
+.roles-table :deep(td:first-child) {
+  width: 35%;
+  min-width: 0;
+}
+
+.roles-table :deep(th:nth-child(2)),
+.roles-table :deep(td:nth-child(2)) { width: 15%; }
+
+.roles-table :deep(th:nth-child(3)),
+.roles-table :deep(td:nth-child(3)) { width: 16%; }
+
+.roles-table :deep(th:nth-child(4)),
+.roles-table :deep(td:nth-child(4)) { width: 20%; }
+
+.roles-table :deep(th:last-child),
+.roles-table :deep(td:last-child) {
+  width: 14%;
+  min-width: 96px;
+  padding-inline: 8px !important;
 }
 
 .roles-table tbody tr {
   cursor: pointer;
-  transition: background 0.18s ease;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
 }
 
 .roles-table tbody tr:hover,
 .roles-table tbody tr.selected {
-  background: #F0F5FF;
+  background: #EEF4FF;
+  box-shadow: inset 3px 0 0 #2950EA;
+}
+
+.roles-table tbody tr.role-inactive > td {
+  background: #F3F4F6;
+}
+
+.roles-table tbody tr.role-inactive:hover > td,
+.roles-table tbody tr.role-inactive.selected > td {
+  background: #E9EDF2;
 }
 
 .role-name {
@@ -905,7 +949,7 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 }
 
 .role-description {
-  max-width: 220px;
+  max-width: 260px;
   margin-top: 3px;
   overflow: hidden;
   color: #7A8797;
@@ -914,36 +958,36 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
   text-overflow: ellipsis;
 }
 
-/* Estado viñeta */
-.status-badge {
+.users-count {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 0.82rem;
-  font-weight: 600;
+  gap: 6px;
+  min-width: 96px;
+  color: #718096;
+  font-size: 0.8rem;
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex: none;
+.users-count .v-icon {
+  color: #8A99AD;
 }
 
-.status-active .status-dot {
-  background: #172B4D;
-}
-
-.status-inactive .status-dot {
-  background: #94A3B8;
-}
-
-.status-active {
+.users-count strong {
   color: #172B4D;
+  font-size: 0.94rem;
 }
 
-.status-inactive {
-  color: #94A3B8;
+.users-count--linked {
+  color: #3867DE;
+}
+
+.users-count--linked .v-icon {
+  color: #2950EA;
+}
+
+.role-status-chip {
+  font-weight: 700;
+  min-width: 88px;
+  justify-content: center;
 }
 
 .date-cell {
@@ -954,7 +998,99 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 
 .actions-cell {
   white-space: nowrap;
-  text-align: right;
+  text-align: center;
+  background: linear-gradient(90deg, transparent, #FFFFFF 22%);
+}
+
+.actions-cell :deep(.v-btn) {
+  margin-left: 2px;
+}
+
+.actions-cell :deep(.v-btn--disabled) {
+  opacity: 0.46;
+}
+
+.role-action-menu__detail :deep(.v-list-item__prepend .v-icon),
+.role-action-menu__edit :deep(.v-list-item__prepend .v-icon),
+.role-action-menu__delete :deep(.v-list-item__prepend .v-icon) {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  margin-inline-end: 12px;
+  place-items: center;
+  border-radius: 9px;
+}
+
+.role-action-menu__detail :deep(.v-list-item__prepend .v-icon) {
+  background: #F8E9CE;
+  color: #B87912;
+}
+
+.role-action-menu__edit :deep(.v-list-item__prepend .v-icon) {
+  background: #E8F0FF;
+  color: #2950EA;
+}
+
+.role-action-menu__delete :deep(.v-list-item__prepend .v-icon) {
+  background: #FDEBED;
+  color: #DC3545;
+}
+
+.role-action-menu__detail,
+.role-action-menu__edit,
+.role-action-menu__delete {
+  transition: background-color 200ms ease-out;
+}
+
+.role-action-menu__detail:hover { background: #FFFAF0; }
+.role-action-menu__edit:hover { background: #F3F7FF; }
+.role-action-menu__delete:hover { background: #FFF5F5; }
+
+.role-action-menu__detail:focus-visible,
+.role-action-menu__edit:focus-visible,
+.role-action-menu__delete:focus-visible {
+  outline: 2px solid #2950EA;
+  outline-offset: -2px;
+}
+
+.role-action-menu__detail :deep(.v-list-item__prepend .v-icon) {
+  transition: transform 200ms ease-out;
+}
+
+.role-action-menu__detail:hover :deep(.v-list-item__prepend .v-icon) {
+  transform: scale(1.15);
+}
+
+.role-action-menu__edit :deep(.v-list-item__prepend .v-icon) {
+  transition: transform 200ms ease-in-out;
+}
+
+.role-action-menu__edit:hover :deep(.v-list-item__prepend .v-icon) {
+  transform: rotate(12deg) scale(1.1);
+}
+
+.role-action-menu__delete:hover :deep(.v-list-item__prepend .v-icon) {
+  animation: role-delete-shake 350ms ease-in-out 1;
+}
+
+@keyframes role-delete-shake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25% { transform: translateX(-2px) rotate(-8deg); }
+  50% { transform: translateX(2px) rotate(8deg); }
+  75% { transform: translateX(-1px) rotate(-4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .role-action-menu__detail,
+  .role-action-menu__edit,
+  .role-action-menu__delete,
+  .role-action-menu__detail :deep(.v-list-item__prepend .v-icon),
+  .role-action-menu__edit :deep(.v-list-item__prepend .v-icon),
+  .role-action-menu__delete :deep(.v-list-item__prepend .v-icon) {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .empty-table {
@@ -1144,11 +1280,10 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 /* Modal de edición: cabecera y acciones fijas; sólo el contenido se desplaza. */
 .role-edit-dialog { display:flex; flex-direction:column; max-height:min(840px, calc(100dvh - 42px)); overflow:hidden; padding:0; border:1px solid #dce5f0; border-radius:18px; background:#fff; box-shadow:0 20px 46px rgba(20,43,80,.18); }
 .role-edit-dialog::before { display:none !important; }
-.role-edit-dialog__header { display:flex; align-items:center; gap:14px; flex:none; padding:16px 24px; border-bottom:1px solid #e6edf5; background:#fff; }
-.role-edit-dialog__icon { display:grid; width:48px; height:48px; place-items:center; flex:none; border-radius:13px; background:#f8e9ce; color:#2850e8; }
-.role-edit-dialog__divider { width:4px; align-self:stretch; border-radius:4px; background:#f2ae16; }
-.role-edit-dialog__header h2 { margin:0; color:#172b4d; font-size:1.24rem; font-weight:800; }
-.role-edit-dialog__header p { margin:4px 0 0; color:#718096; font-size:.83rem; }
+.role-edit-dialog__header { display:flex; align-items:center; gap:13px; flex:none; padding:22px 26px; border-bottom:1px solid #ead39e; background:#fff9eb; }
+.role-edit-dialog__icon { display:grid; width:44px; height:44px; place-items:center; flex:none; border-radius:12px; background:#f8e9ce; color:#2850e8; }
+.role-edit-dialog__header h2 { margin:0; color:#142b50; font-size:1.14rem; font-weight:800; }
+.role-edit-dialog__header p { margin:4px 0 0; color:#64748b; font-size:.82rem; }
 .role-edit-dialog__close { margin-left:auto; border-radius:9px; color:#64748b; }
 .role-edit-dialog__close:hover:not(.v-btn--disabled) { background:#fdebed; color:#c64747; }
 .role-edit-dialog__content { flex:1 1 auto; overflow-y:auto; padding:18px 24px 22px; }
@@ -1168,6 +1303,11 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 .role-permission-card>header strong { font-size:.82rem; line-height:1.2; }
 .role-permission-card__body { padding:8px 12px 11px; }
 .role-permission-card__body :deep(.v-selection-control) { min-height:31px; }
+.role-permission-card__body :deep(.v-selection-control__input) { border-radius:4px; background:#fff; }
+.role-permission-card__body :deep(.v-selection-control__input::before) { border-radius:4px; transition:opacity 150ms ease; }
+.role-permission-card__body :deep(.v-selection-control__input > .v-icon) { color:#94A3B8 !important; opacity:1 !important; transition:color 150ms ease; }
+.role-permission-card__body :deep(.v-selection-control--dirty .v-selection-control__input > .v-icon) { color:#173B8F !important; }
+.role-permission-card__body :deep(.v-selection-control--focus-visible .v-selection-control__input) { outline:2px solid #173B8F; outline-offset:2px; }
 .role-permission-card__body :deep(.v-label) { color:#111827; font-size:.78rem; font-weight:800; opacity:1; }
 .role-permission-card__empty { margin:4px 0; color:#8190a1; font-size:.76rem; }
 .role-edit-dialog__actions { flex:none; padding:15px 24px 18px; border-top:1px solid #e6edf5; background:#fff; }
@@ -1184,6 +1324,7 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 :global(.v-theme--dark) .role-edit-dialog__permissions { border-color:#385373; background:#22334b; }
 :global(.v-theme--dark) .role-permission-card { border-color:#40516b; }
 :global(.v-theme--dark) .role-permission-card>header { border-color:#40516b; background:#2b3d56; color:#e7eefb; }
+:global(.v-theme--dark) .role-permission-card__body :deep(.v-selection-control__input) { background:#fff; }
 :global(.v-theme--dark) .role-permission-card__body :deep(.v-label) { color:#f1f5f9; }
 :global(.v-theme--dark) .role-edit-dialog__cancel { background:#29313a !important; color:#a9c7ff !important; border-color:#607da8 !important; }
 
@@ -1267,6 +1408,37 @@ onBeforeUnmount(() => { if (createdAlertTimer) window.clearTimeout(createdAlertT
 }
 
 @media (max-width: 768px) {
+  .roles-table {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .roles-table :deep(th:nth-child(2)),
+  .roles-table :deep(td:nth-child(2)),
+  .roles-table :deep(th:nth-child(4)),
+  .roles-table :deep(td:nth-child(4)) {
+    display: none;
+  }
+
+  .roles-table :deep(th:first-child),
+  .roles-table :deep(td:first-child) {
+    min-width: 190px;
+  }
+
+  .roles-table :deep(th:last-child),
+  .roles-table :deep(td:last-child) {
+    width: 132px;
+    padding-inline: 8px !important;
+  }
+
+  .roles-table :deep(.v-table__wrapper) {
+    overflow-x: hidden;
+  }
+
+  .actions-cell :deep(.v-btn) {
+    margin-left: 0;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr;
   }

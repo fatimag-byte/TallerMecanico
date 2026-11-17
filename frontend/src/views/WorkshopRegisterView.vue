@@ -1,28 +1,34 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref } from 'vue'
 import type { Workshop } from '../types'
 import { saveWorkshop } from '../services/workshops'
 import SmartAddressFields from '../components/SmartAddressFields.vue'
 
-const form = ref<Workshop>({
-  name: '',
-  rfc: '',
-  contact_email: '',
-  street_and_number: '',
-  neighborhood: '',
-  postal_code: '',
-  state: '',
-  municipality: '',
-  photo_url: null,
-  photo_name: null
-})
+function emptyWorkshop(): Workshop {
+  return {
+    name: '',
+    rfc: '',
+    contact_email: '',
+    street_and_number: '',
+    neighborhood: '',
+    postal_code: '',
+    state: '',
+    municipality: '',
+    photo_url: null,
+    photo_name: null
+  }
+}
+
+const form = ref<Workshop>(emptyWorkshop())
 
 const fileInput = ref<HTMLInputElement | null>(null)
+const workshopForm = ref<{ resetValidation: () => void } | null>(null)
 const selectedFileName = ref('No se eligió ningún archivo')
 const photoError = ref('')
 const saving = ref(false)
 const successMessage = ref('')
 const errorMessage = ref('')
+let successAlertTimer: number | undefined
 
 const rfcRule = (value: string) => {
   if (!value) return 'El RFC es obligatorio.'
@@ -101,25 +107,44 @@ function removePhoto() {
   if (fileInput.value) fileInput.value.value = ''
 }
 
+async function resetForm() {
+  form.value = emptyWorkshop()
+  selectedFileName.value = 'No se eligió ningún archivo'
+  photoError.value = ''
+  if (fileInput.value) fileInput.value.value = ''
+  await nextTick()
+  workshopForm.value?.resetValidation()
+}
+
+function showSuccess(message: string) {
+  if (successAlertTimer) window.clearTimeout(successAlertTimer)
+  successMessage.value = message
+  successAlertTimer = window.setTimeout(() => { successMessage.value = '' }, 3000)
+}
+
 async function submit() {
   if (!isFormValid.value) return
   saving.value = true
   errorMessage.value = ''
 
   try {
-    const saved = await saveWorkshop({
+    await saveWorkshop({
       ...form.value,
       rfc: form.value.rfc.toUpperCase().trim(),
       postal_code: form.value.postal_code.trim()
     })
-    form.value = { ...saved }
-    successMessage.value = 'Centro automotriz registrado exitosamente.'
+    await resetForm()
+    showSuccess('Centro automotriz registrado correctamente.')
   } catch (cause: any) {
     errorMessage.value = cause.response?.data?.detail || 'No fue posible registrar el centro automotriz.'
   } finally {
     saving.value = false
   }
 }
+
+onBeforeUnmount(() => {
+  if (successAlertTimer) window.clearTimeout(successAlertTimer)
+})
 
 </script>
 
@@ -139,11 +164,15 @@ async function submit() {
       </div>
     </header>
 
+    <v-alert v-if="successMessage" class="workshop-register-success-alert mb-5" variant="flat">
+      <v-icon icon="mdi-check-circle" class="mr-2" />{{ successMessage }}
+    </v-alert>
+
     <v-alert v-if="errorMessage" type="error" variant="tonal" class="mb-5" closable @click:close="errorMessage = ''">
       {{ errorMessage }}
     </v-alert>
 
-    <v-form @submit.prevent="submit">
+    <v-form ref="workshopForm" @submit.prevent="submit">
       <div class="workshop-grid">
         <!-- Columna Izquierda: Formulario de datos -->
         <div class="form-column">
@@ -328,15 +357,6 @@ async function submit() {
       </footer>
     </v-form>
 
-    <v-snackbar
-      :model-value="!!successMessage"
-      color="success"
-      location="top"
-      :timeout="4000"
-      @update:model-value="val => { if (!val) successMessage = '' }"
-    >
-      <v-icon icon="mdi-check-circle-outline" class="mr-2" />{{ successMessage }}
-    </v-snackbar>
   </v-container>
 </template>
 
@@ -615,6 +635,17 @@ async function submit() {
   padding-inline: 26px;
   box-shadow: 0 8px 20px rgba(56, 103, 222, 0.24);
   letter-spacing: 0.2px;
+}
+
+.workshop-register-success-alert {
+  border: 1px solid rgba(35, 126, 24, 0.2);
+  background: #EAF7EA !important;
+  color: #237E18 !important;
+  font-weight: 700;
+}
+
+.workshop-register-success-alert :deep(.v-icon) {
+  color: #237E18 !important;
 }
 
 /* Modo oscuro */

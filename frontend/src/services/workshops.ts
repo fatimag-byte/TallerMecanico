@@ -55,6 +55,11 @@ export async function updateWorkshop(id: number, payload: Workshop): Promise<Wor
   return data
 }
 
+export async function activateWorkshop(id: number): Promise<Workshop> {
+  const { data } = await api.patch<Workshop>(`/workshops/${id}/activate`)
+  return data
+}
+
 export async function getWorkshop(): Promise<Workshop | null> {
   const { data } = await api.get<Workshop[]>('/workshops', { params: { status_filter: 'activos' } })
   return data[0] || null

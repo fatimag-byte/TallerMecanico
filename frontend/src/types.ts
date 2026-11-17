@@ -69,7 +69,7 @@ export interface VehicleUpdatePayload {
   make: string
   model: string
   year: number
-  plate: string
+  plate?: string | null
   version?: string | null
   color?: string | null
   mileage?: number | null
